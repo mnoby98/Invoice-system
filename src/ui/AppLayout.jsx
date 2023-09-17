@@ -10,7 +10,6 @@ function AppLayout() {
           <Outlet />
         </main>
       </div>
-
       <Footer />
     </div>
   );
