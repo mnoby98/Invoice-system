@@ -18,8 +18,8 @@ function App() {
         <Route element={<Login />}>
           <Route index element={<Navigate replace to="/login" />} />
           <Route path="/login" element={<LoginForm />} />
-          <Route path="/login/auth" element={<AuthNewPassword />} />
           <Route path="/login/authotp" element={<AuthOtp />} />
+          <Route path="/login/auth" element={<AuthNewPassword />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
