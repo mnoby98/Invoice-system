@@ -1,10 +1,14 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import ErrorText from "../../ui/ErrorText";
 import { Link } from "react-router-dom";
+import InputField from "../../ui/InputField";
+import { useEffect, useState } from "react";
 
 function AuthOtp() {
-  const intialValues = {
+  const [disabled, setDisabled] = useState(true);
+  const [timer, setTimer] = useState(10);
+
+  const otpValues = {
     otpNumber: "",
   };
   const validationSchema = Yup.object({
@@ -13,43 +17,63 @@ function AuthOtp() {
 
   const onSubmit = (values) => console.log(values);
 
+  useEffect(
+    function () {
+      const interval = setInterval(() => {
+        if (disabled === true) return;
+        setTimer((timer) => timer - 1);
+      }, 1000);
+      return () => clearInterval(interval);
+    },
+    [disabled, timer],
+  );
+
+  useEffect(
+    function () {
+      const interval = setInterval(() => {
+        if (disabled === false) setDisabled(true);
+        console.log(disabled);
+      }, 11000);
+      return () => clearInterval(interval);
+    },
+    [disabled],
+  );
+
   function handleResentOtp(e) {
     e.preventDefault();
-    console.log("ssss");
+    setTimer(10);
+    setDisabled(false);
+    console.log(disabled);
   }
   return (
     <Formik
-      initialValues={intialValues}
+      initialValues={otpValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
       {(formik) => {
         return (
-          <Form className="  mx-8   rounded-md text-xl font-normal md:text-2xl">
-            <h1 className="mb-3 mt-3 font-serif  text-3xl ">Auth OTP</h1>
-            <div className="relative mb-5  flex flex-col gap-2 ">
-              <label htmlFor="otpNumber">Otp Number</label>
-              <Field
-                name="otpNumber"
-                id="otpNumber"
-                type="text"
-                className=" border-[3px] border-red-100 px-3 py-2 outline-none"
-              />
-
-              <ErrorMessage name="otpNumber" component={ErrorText} />
-            </div>
+          <Form className="  mx-8   rounded-md text-xl font-semibold ">
+            <h1 className="mb-3 mt-3 text-2xl  font-semibold ">Auth OTP</h1>
+            <InputField
+              id="otpNumber"
+              name="otpNumber"
+              placeholder="Enter OTP Number"
+              type="text"
+              label="Otp Number"
+            />
             <button
               type="button"
               onClick={handleResentOtp}
-              className="text-blue-600   underline"
+              disabled={!disabled}
+              className="text-lg text-blue-600   underline"
             >
-              Sent again to email
+              ✉ Sent again to email <span>{timer}</span>
             </button>
-
-            <div className=" my-3 pt-4 text-center">
+            <div className="  my-3 flex justify-center pt-4">
               <Link
                 to="/login/auth"
-                className=" mt-2 w-40 rounded-full  bg-red-400 p-2 text-center sm:w-64 "
+                className=" mt-2 w-40 rounded-full  bg-emerald-500 p-2 text-center text-white sm:w-64 "
               >
                 Submit
               </Link>
