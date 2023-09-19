@@ -33,7 +33,9 @@ function LoginForm() {
     >
       {(formik) => (
         <Form className="  mx-8 rounded-md  text-xl font-semibold ">
-          <h1 className="mb-3 mt-3 text-2xl font-semibold">Login</h1>
+          <h1 className="mb-3 mt-3 text-[25px] font-semibold  text-emerald-600">
+            Login
+          </h1>
           <div className="mx-2 py-4">
             <InputField
               id="email"
@@ -49,10 +51,7 @@ function LoginForm() {
               type="text"
               label="Password"
             />
-            <Link
-              className="text-lg text-blue-600   underline"
-              to="/login/authotp"
-            >
+            <Link className="text-[18px] text-blue-600   " to="/login/authotp">
               Forgot password ?
             </Link>
           </div>

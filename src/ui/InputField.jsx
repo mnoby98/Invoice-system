@@ -6,12 +6,13 @@ function InputField(props) {
 
   return (
     <div className="relative mb-5  flex flex-col gap-2 ">
-      <label htmlFor={id} className="px-2">
+      <label htmlFor={id} className="px-2 text-[18px] text-emerald-900">
         {label}
       </label>
       <Field name={name}>
         {(props) => {
           const { meta, field } = props;
+          console.log(meta);
           return (
             <input
               placeholder={placeholder}
@@ -21,7 +22,7 @@ function InputField(props) {
                 meta.touched && meta.error
                   ? " border-red-500"
                   : " border-stone-400 "
-              } border-stone-400  px-1 py-1  focus:outline-none   sm:w-auto`}
+              }  px-1  py-1  text-[18px] font-normal focus:outline-none    sm:w-auto`}
               {...field}
             />
           );

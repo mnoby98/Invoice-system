@@ -54,7 +54,9 @@ function AuthOtp() {
       {(formik) => {
         return (
           <Form className="  mx-8    rounded-md text-xl font-semibold ">
-            <h1 className="mb-3 mt-3 text-2xl  font-semibold ">Auth OTP</h1>
+            <h1 className="mb-3 mt-3 text-[25px] font-semibold  text-emerald-600 ">
+              Auth OTP
+            </h1>
             <InputField
               id="otpNumber"
               name="otpNumber"
@@ -62,14 +64,26 @@ function AuthOtp() {
               type="text"
               label="Otp Number"
             />
-            <button
-              type="button"
-              onClick={handleResentOtp}
-              disabled={!disabled}
-              className="text-lg text-blue-600   underline"
-            >
-              ✉ Sent again to email <span>{timer}</span>
-            </button>
+            <div className="flex justify-between">
+              <button
+                type="button"
+                onClick={handleResentOtp}
+                disabled={!disabled}
+                className={`text-lg ${
+                  disabled ? "text-blue-600" : " text-gray-700 opacity-50"
+                }   `}
+              >
+                ✉ Sent again to email
+              </button>
+              {disabled ? (
+                ""
+              ) : (
+                <span className={`text-lg text-green-700 opacity-50  `}>
+                  {timer}
+                </span>
+              )}
+            </div>
+
             <div className="  my-3 flex justify-center pt-4">
               <Link
                 to="/login/auth"
