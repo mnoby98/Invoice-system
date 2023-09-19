@@ -8,8 +8,11 @@ function AuthNewPassword() {
     password: "",
     confirmPassword: "",
   };
-  const validationSchema = Yup.object({
-    password: Yup.string().required("Required"),
+  const newPasswordSchema = Yup.object({
+    password: Yup.string()
+      .min(2, "Too Short!")
+      .max(15, "Too Long")
+      .required("Required"),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), ""], "Passwords must match")
       .required("Required"),
@@ -20,7 +23,7 @@ function AuthNewPassword() {
   return (
     <Formik
       initialValues={newPasswordValues}
-      validationSchema={validationSchema}
+      validationSchema={newPasswordSchema}
       onSubmit={onSubmit}
     >
       {(formik) => (

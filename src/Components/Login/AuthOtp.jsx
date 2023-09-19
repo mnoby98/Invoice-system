@@ -11,7 +11,7 @@ function AuthOtp() {
   const otpValues = {
     otpNumber: "",
   };
-  const validationSchema = Yup.object({
+  const otpSchema = Yup.object({
     otpNumber: Yup.string().required("Required"),
   });
 
@@ -48,12 +48,12 @@ function AuthOtp() {
   return (
     <Formik
       initialValues={otpValues}
-      validationSchema={validationSchema}
+      validationSchema={otpSchema}
       onSubmit={onSubmit}
     >
       {(formik) => {
         return (
-          <Form className="  mx-8   rounded-md text-xl font-semibold ">
+          <Form className="  mx-8    rounded-md text-xl font-semibold ">
             <h1 className="mb-3 mt-3 text-2xl  font-semibold ">Auth OTP</h1>
             <InputField
               id="otpNumber"
