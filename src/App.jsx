@@ -6,6 +6,7 @@ import LoginForm from "./Components/Login/LoginForm";
 import PageNotFound from "./ui/PageNotFound";
 import AuthNewPassword from "./Components/Login/AuthNewPassword";
 import AuthOtp from "./Components/Login/AuthOtp";
+import Invoice from "./Pages/Login/Invoice/Invoice";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route element={<AppLayout />}>
           <Route index element={<Navigate replace to="/home" />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/invoice" element={<Invoice />} />
         </Route>
         <Route element={<Login />}>
           <Route index element={<Navigate replace to="/login" />} />

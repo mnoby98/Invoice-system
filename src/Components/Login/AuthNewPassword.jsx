@@ -28,9 +28,7 @@ function AuthNewPassword() {
     >
       {(formik) => (
         <Form className="  mx-8   rounded-md text-xl font-semibold ">
-          <h1 className="mb-3 mt-3 text-[25px]  font-semibold text-emerald-600 ">
-            Auth
-          </h1>
+          <h1 className="mb-3 mt-3 text-[25px]  font-semibold  ">Auth</h1>
           <div className="mx-2 py-4">
             <div className="relative mb-5  flex flex-col gap-2   text-xl ">
               <h2 className="   font-sans  text-[20px]     text-emerald-700">
