@@ -3,11 +3,7 @@ import ImageLogo from "../../public/logo_transparent.png";
 function Logo() {
   return (
     <Link to="/home">
-      <img
-        src={ImageLogo}
-        alt="Logo"
-        className=" h-[6rem] w-auto"
-      />
+      <img src={ImageLogo} alt="Logo" className=" h-[18rem] w-auto" />
     </Link>
   );
 }

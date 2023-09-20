@@ -6,7 +6,7 @@ import LoginForm from "./Components/Login/LoginForm";
 import PageNotFound from "./ui/PageNotFound";
 import AuthNewPassword from "./Components/Login/AuthNewPassword";
 import AuthOtp from "./Components/Login/AuthOtp";
-import Invoice from "./Pages/Login/Invoice/Invoice";
+import Invoice from "./Pages/Invoice/Invoice";
 
 function App() {
   return (
