@@ -21,7 +21,7 @@ function Home() {
       </section>
       <Link
         to="/invoice"
-        className=" rounded-full bg-emerald-600 px-3 py-1 font-medium text-white hover:bg-emerald-500 "
+        className=" rounded-full bg-[#04749B] px-3 py-1 font-medium text-white hover:bg-[#338dac] "
       >
         Get started
       </Link>

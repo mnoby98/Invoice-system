@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Button({ design, children, to, type }) {
   const base =
-    "mt-2  w-48 sm:w-64 rounded-full  bg-emerald-500 focus:outline-none  focus:ring  focus:ring-offset-1 focus:ring-emerald-400  p-2 text-center   text-white ";
+    "mt-2  w-48 sm:w-64 rounded-full  bg-[#04749B] focus:outline-none  focus:ring  focus:ring-offset-1 focus:ring-[#04749B]  p-2 text-center   text-white ";
   const styled = {
     primary: base,
   };

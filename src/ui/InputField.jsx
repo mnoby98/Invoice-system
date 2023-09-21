@@ -6,7 +6,7 @@ function InputField(props) {
 
   return (
     <div className="relative mb-5  flex flex-col gap-2 ">
-      <label htmlFor={id} className="px-2 text-[18px] text-emerald-900">
+      <label htmlFor={id} className="px-2 text-[18px] text-[#04749B]">
         {label}
       </label>
       <Field name={name}>

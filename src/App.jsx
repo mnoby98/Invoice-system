@@ -7,6 +7,7 @@ import PageNotFound from "./ui/PageNotFound";
 import AuthNewPassword from "./Components/Login/AuthNewPassword";
 import AuthOtp from "./Components/Login/AuthOtp";
 import Invoice from "./Pages/Invoice/Invoice";
+import CreateInvoice from "./Pages/createInvoice/CreateInvoice";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route index element={<Navigate replace to="/home" />} />
           <Route path="/home" element={<Home />} />
           <Route path="/invoice" element={<Invoice />} />
+          <Route path="/create-invoice" element={<CreateInvoice />} />
         </Route>
         <Route element={<Login />}>
           <Route index element={<Navigate replace to="/login" />} />
