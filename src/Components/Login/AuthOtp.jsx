@@ -3,94 +3,74 @@ import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import InputField from "../../ui/InputField";
 import { useEffect, useState } from "react";
+import Button from "../../ui/Button";
+import useAuthRequest from "./useAuthRequest";
+import { BeatLoader } from "react-spinners";
+
+const emailMatches = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
 
 function AuthOtp() {
-  const [disabled, setDisabled] = useState(true);
-  const [timer, setTimer] = useState(10);
+  const [errorFromApi, setError] = useState();
+  const [email, setEmail] = useState();
 
-  const otpValues = {
-    otpNumber: "",
-  };
-  const otpSchema = Yup.object({
-    otpNumber: Yup.string().required("Required"),
+  const { isLoading, sendingOtp } = useAuthRequest({
+    handleSetError,
+    userdata: email,
   });
 
-  const onSubmit = (values) => console.log(values);
+  const otpValues = {
+    email: "",
+  };
 
-  useEffect(
-    function () {
-      const interval = setInterval(() => {
-        if (disabled === true) return;
-        setTimer((timer) => timer - 1);
-      }, 1000);
-      return () => clearInterval(interval);
-    },
-    [disabled, timer],
-  );
+  const otpSchema = Yup.object({
+    email: Yup.string()
+      .email("Please Enter right format")
+      .matches(emailMatches, "Plz Enter a format without tags ")
+      .required("Required"),
+    // otpNumber: Yup.string().required("Required"),
+  });
 
-  useEffect(
-    function () {
-      const interval = setInterval(() => {
-        if (disabled === false) setDisabled(true);
-        console.log(disabled);
-      }, 11000);
-      return () => clearInterval(interval);
-    },
-    [disabled],
-  );
+  const onSubmit = (values) => {
+    setEmail({ email: values.email });
+    sendingOtp({ email: values.email });
+    setError("");
+  };
 
-  function handleResentOtp(e) {
-    e.preventDefault();
-    setTimer(10);
-    setDisabled(false);
-    console.log(disabled);
+  function handleSetError(errorFromApi) {
+    setError(errorFromApi);
   }
+
   return (
     <Formik
       initialValues={otpValues}
-      validationSchema={otpSchema}
+      // validationSchema={otpSchema}
       onSubmit={onSubmit}
     >
       {(formik) => {
+        console.log(formik);
         return (
           <Form className="  mx-8    rounded-md text-xl font-semibold ">
             <h1 className="mb-3 mt-3 font-serif text-[25px]    text-black ">
               Auth OTP
             </h1>
             <InputField
-              id="otpNumber"
-              name="otpNumber"
-              placeholder="Enter OTP Number"
+              id="email"
+              name="email"
+              placeholder="Enter email"
               type="text"
-              label="Otp Number"
+              label="Email"
+              error={errorFromApi?.errors?.email?.[0]}
             />
-            <div className="flex justify-between">
-              <button
-                type="button"
-                onClick={handleResentOtp}
-                disabled={!disabled}
-                className={`text-lg ${
-                  disabled ? "text-blue-600" : " text-gray-700 opacity-50"
-                }   `}
-              >
-                ✉ Sent again to email
-              </button>
-              {disabled ? (
-                ""
-              ) : (
-                <span className={`text-lg text-green-700 opacity-50  `}>
-                  {timer}
-                </span>
-              )}
-            </div>
 
             <div className="  my-3 flex justify-center pt-4">
-              <Link
-                to="/login/auth"
+              <Button
+                // to="/login/auth"
+                design="primary"
+                type="submit"
                 className=" mt-2 w-40 rounded-full  bg-emerald-500 p-2 text-center text-white sm:w-64 "
               >
-                Submit
-              </Link>
+                {isLoading ? <BeatLoader color="#ffffff" /> : "Sent OTP"}
+              </Button>
             </div>
           </Form>
         );

@@ -1,8 +1,7 @@
 import { ErrorMessage, Field } from "formik";
 import ErrorText from "./ErrorText";
-
-function InputField(props) {
-  const { name, placeholder, id, type, label, error, table } = props;
+function TextArea(props) {
+  const { name, placeholder, id, label, error, table } = props;
 
   return (
     <div
@@ -13,15 +12,14 @@ function InputField(props) {
       <label htmlFor={id} className="px-2 text-[18px] text-[#04749B]">
         {label}
       </label>
-      <div className="flex h-12  flex-col ">
+      <div className="h-15 flex flex-col">
         <Field name={name}>
           {(props) => {
             const { meta, field } = props;
             return (
-              <input
+              <textarea
                 placeholder={placeholder}
                 id={id}
-                type={type}
                 className={`w-40 grow rounded-[8px] border-[1px] ${
                   (meta.touched && meta.error) || error != null
                     ? " border-red-500"
@@ -42,4 +40,4 @@ function InputField(props) {
   );
 }
 
-export default InputField;
+export default TextArea;

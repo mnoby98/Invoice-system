@@ -2,12 +2,31 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import InputField from "../../ui/InputField";
 import Button from "../../ui/Button";
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import useNewPassword from "./useNewPassword";
 
 function AuthNewPassword() {
+  const { email, otp } = useSelector((state) => state.user.userForgetPassword);
+
+  const [errorFromApi, setError] = useState();
+
+  const [password, setPassword] = useState();
+  const [confirmPassword, setConfirmPassword] = useState();
+
+  const { isLoading, newPassword } = useNewPassword({
+    handleError,
+    email,
+    otp,
+    password,
+    confirmPassword,
+  });
+
   const newPasswordValues = {
     password: "",
     confirmPassword: "",
   };
+
   const newPasswordSchema = Yup.object({
     password: Yup.string()
       .min(2, "Too Short!")
@@ -18,12 +37,29 @@ function AuthNewPassword() {
       .required("Required"),
   });
 
-  const onSubmit = (values) => console.log(values);
+  function handleError(ErrorFromApi) {
+    setError(ErrorFromApi);
+  }
+
+  const onSubmit = (values) => {
+    console.log(values);
+
+    setConfirmPassword({ password_confirmation: values.confirmPassword });
+    setPassword({
+      password: values.password,
+    });
+    newPassword({
+      password: values.password,
+      password_confirmation: values.confirmPassword,
+      email: email,
+      otp: otp.otp,
+    });
+  };
 
   return (
     <Formik
       initialValues={newPasswordValues}
-      validationSchema={newPasswordSchema}
+      // validationSchema={newPasswordSchema}
       onSubmit={onSubmit}
     >
       {(formik) => (
@@ -43,6 +79,7 @@ function AuthNewPassword() {
               type="password"
               placeholder="Enter new password"
               label="Password"
+              error={errorFromApi}
             />
             <InputField
               name="confirmPassword"
@@ -50,6 +87,7 @@ function AuthNewPassword() {
               type="password"
               placeholder="Enter Password"
               label="Confirm password"
+              error={errorFromApi}
             />
           </div>
           <div className=" text-center">
