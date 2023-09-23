@@ -4,7 +4,11 @@ import Button from "../../ui/Button";
 import InputField from "../../ui/InputField";
 import CostInput from "../../ui/CostInput";
 import TextArea from "../../ui/TextArea";
+import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
+import { addInvoice } from "../../Components/invoice/InvoiceSlice";
 function CreateInvoice() {
+  const dispatch = useDispatch();
   const initialValues = {
     title: "",
     description: "",
@@ -21,7 +25,17 @@ function CreateInvoice() {
 
   const onSubmit = (values) => {
     console.log(values);
+    const invoice = {
+      title: values.title,
+      description: values.description,
+      currency: values.currency,
+      cost: values.cost,
+    };
+    if (!values) return toast.error("there is no values ");
+    dispatch(addInvoice(invoice));
+    toast.success("Success addin invoice to table");
   };
+
   return (
     <div className="h-full  bg-blue-100 ">
       <div className="mr-2  px-8   pt-6 ">

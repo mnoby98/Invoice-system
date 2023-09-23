@@ -3,7 +3,7 @@ import { FiFilter } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 function InvoiceNav({ handleClick }) {
-  const [row, setRow] = useState(null);
+  const [row, setRow] = useState("");
 
   return (
     <div className=" flex items-center justify-between ">
@@ -26,7 +26,9 @@ function InvoiceNav({ handleClick }) {
           onChange={(e) => setRow(e.target.value)}
         >
           {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
-            <option value={num}>{num}</option>
+            <option key={num} value={num}>
+              {num}
+            </option>
           ))}
         </select>
 

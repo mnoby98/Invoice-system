@@ -1,17 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { getCurrentUser } from "../../servers/apiLogin";
-import { useDispatch } from "react-redux";
-import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
-import { useEffect } from "react";
 
 function useUser() {
+  console.log("dataaaaaa");
   const { isLoading, data, error } = useQuery({
     queryKey: ["data"],
     queryFn: getCurrentUser,
   });
-  return { isLoading, data, error };
+  console.log("dataaaaaa from useUser", data?.data);
+  const token = data;
+  return { isLoading, data, error, token };
 }
 
 export default useUser;

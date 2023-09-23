@@ -29,11 +29,11 @@ export async function getCurrentUser() {
   });
 
   const data = await res.json();
-  console.log("data from  user", data);
+  console.log("data from  Api use", data);
   if (!res.ok) {
     throw data;
   }
-  return data;
+  return data?.data;
 }
 
 export async function getOtp(email) {
