@@ -4,7 +4,7 @@ import InputField from "../../ui/InputField";
 import Button from "../../ui/Button";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import useNewPassword from "./useNewPassword";
+import useNewPassword from "../../Components/Login/useNewPassword";
 
 function AuthNewPassword() {
   const { email, otp } = useSelector((state) => state.user.userForgetPassword);
@@ -27,15 +27,15 @@ function AuthNewPassword() {
     confirmPassword: "",
   };
 
-  const newPasswordSchema = Yup.object({
-    password: Yup.string()
-      .min(2, "Too Short!")
-      .max(15, "Too Long")
-      .required("Required"),
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password"), ""], "Passwords must match")
-      .required("Required"),
-  });
+  // const newPasswordSchema = Yup.object({
+  //   password: Yup.string()
+  //     .min(2, "Too Short!")
+  //     .max(15, "Too Long")
+  //     .required("Required"),
+  // confirmPassword: Yup.string()
+  //   .oneOf([Yup.ref("password"), ""], "Passwords must match")
+  //   .required("Required"),
+  // });
 
   function handleError(ErrorFromApi) {
     setError(ErrorFromApi);

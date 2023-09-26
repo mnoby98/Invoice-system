@@ -2,9 +2,9 @@ import { Formik, Form } from "formik";
 import InputField from "../../ui/InputField";
 import { useEffect, useState } from "react";
 import Button from "../../ui/Button";
-import useAuthRequest from "./useAuthRequest";
+import useAuthRequest from "../../Components/Login/useAuthRequest";
 import { useSelector } from "react-redux";
-import usePutOTP from "./usePutOTP";
+import usePutOTP from "../../Components/Login/usePutOTP";
 
 function OtpNumber() {
   const [errorFromApi, setError] = useState();

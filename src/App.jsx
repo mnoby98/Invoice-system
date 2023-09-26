@@ -2,18 +2,19 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Home from "./ui/Home";
 import AppLayout from "./ui/AppLayout";
 import Login from "./Pages/Login/Login";
-import LoginForm from "./Components/Login/LoginForm";
 import PageNotFound from "./ui/PageNotFound";
-import AuthNewPassword from "./Components/Login/AuthNewPassword";
-import AuthOtp from "./Components/Login/AuthOtp";
 import Invoice from "./Pages/Invoice/Invoice";
-import CreateInvoice from "./Pages/createInvoice/CreateInvoice";
+import CreateInvoice from "./Pages/Invoice/CreateInvoice";
 import { QueryClient } from "@tanstack/react-query";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
-import OtpNumber from "./Components/Login/OtpNumber";
 import ProtectRoute from "./ui/ProtectRoute";
+import Profile from "./Pages/user/Profile";
+import LoginForm from "./Pages/Login/LoginForm";
+import AuthNewPassword from "./Pages/Login/AuthNewPassword";
+import AuthOtp from "./Pages/Login/AuthOtp";
+import OtpNumber from "./Pages/Login/OtpNumber";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -41,6 +42,7 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/invoice" element={<Invoice />} />
               <Route path="/create-invoice" element={<CreateInvoice />} />
+              <Route path="/profile" element={<Profile />} />
             </Route>
             <Route element={<Login />}>
               <Route index element={<Navigate replace to="/login" />} />

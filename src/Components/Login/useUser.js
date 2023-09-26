@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { getCurrentUser } from "../../servers/apiLogin";
+import { GetCurrentUser } from "../../servers/apiLogin";
+import { useEffect, useState } from "react";
 
 function useUser() {
-  console.log("dataaaaaa");
   const { isLoading, data, error } = useQuery({
     queryKey: ["data"],
-    queryFn: getCurrentUser,
+    queryFn: GetCurrentUser,
   });
   console.log("dataaaaaa from useUser", data?.data);
   const token = data;

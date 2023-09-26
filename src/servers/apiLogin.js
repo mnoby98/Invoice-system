@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux";
+
 const Url = "https://api-invoices.twice-m.com/api";
 
 async function loginApi(emailAndPassword) {
@@ -11,14 +13,16 @@ async function loginApi(emailAndPassword) {
   });
 
   const data = await res.json();
+  console.log("from GetOTp", data);
   if (!res.ok) {
     throw data;
   }
   return data;
 }
 
-export async function getCurrentUser() {
+export async function GetCurrentUser() {
   const tokenValue = localStorage.getItem("token");
+  if (!tokenValue) return null;
   console.log("token", tokenValue);
   const res = await fetch(`${Url}/user`, {
     headers: {

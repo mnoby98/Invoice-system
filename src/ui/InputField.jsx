@@ -7,7 +7,9 @@ function InputField(props) {
   return (
     <div
       className={`relative mb-5 ${
-        table ? " grid grid-cols-[1fr_2fr] " : " flex flex-col gap-2"
+        table
+          ? "  grid grid-cols-[1fr_2fr] items-center "
+          : " flex flex-col  justify-between gap-2"
       }     `}
     >
       <label htmlFor={id} className="px-2 text-[18px] text-[#04749B]">
@@ -26,7 +28,7 @@ function InputField(props) {
                   (meta.touched && meta.error) || error != null
                     ? " border-red-500"
                     : " border-stone-400 "
-                }  px-1  py-1  text-[18px] font-normal focus:outline-none    sm:w-auto`}
+                }  px-3  py-1  text-[18px] font-normal focus:outline-none    sm:w-auto`}
                 {...field}
               />
             );

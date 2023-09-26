@@ -3,7 +3,7 @@ import { getOtp } from "../../servers/apiLogin";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { loginUser, userForgetPassword } from "./loginSlice";
+import { userForgetPassword } from "./loginSlice";
 
 function useAuthRequest({ handleSetError, userdata }) {
   const navigate = useNavigate();

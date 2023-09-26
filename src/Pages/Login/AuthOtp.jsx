@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import InputField from "../../ui/InputField";
 import { useEffect, useState } from "react";
 import Button from "../../ui/Button";
-import useAuthRequest from "./useAuthRequest";
+import useAuthRequest from "../../Components/Login/useAuthRequest";
 import { BeatLoader } from "react-spinners";
 
 const emailMatches = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
