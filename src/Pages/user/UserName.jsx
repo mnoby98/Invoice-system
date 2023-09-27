@@ -1,13 +1,13 @@
 import { useState } from "react";
 import ProfileInfo from "../../Components/profile/ProfileInfo";
-import ProfileOtpEmail from "../../Components/profile/ProfileOTP";
+import ProfileOtpEmail from "../../Components/profile/ProfileOtpEmail";
 import ProfileNewEdit from "../../Components/profile/ProfileNewEdit";
 import ProfileOtpNumber from "../../Components/profile/ProfileOtpNumber";
 
 function UserName() {
   const [emailPage, setEmailpage] = useState(true);
   const [otpPage, setOtpPage] = useState(true);
-  const [newPage, setNewPage] = useState(true);
+  const [newPage, setNewPage] = useState(false);
   return emailPage ? (
     <ProfileInfo
       id="name"

@@ -15,7 +15,7 @@ function AuthOtp() {
 
   const { isLoading, sendingOtp } = useAuthRequest({
     handleSetError,
-    userdata: email,
+    userdata: { email, type: "loginToOtp" },
   });
 
   const otpValues = {

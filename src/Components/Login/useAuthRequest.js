@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { userForgetPassword } from "./loginSlice";
 
-function useAuthRequest({ handleSetError, userdata }) {
+function useAuthRequest({ handleSetError, userdata, setOtpPage, setNewPage }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -13,7 +13,13 @@ function useAuthRequest({ handleSetError, userdata }) {
     mutationFn: getOtp,
     onSuccess: (successFromApi) => {
       toast.success(successFromApi.message);
-      if (userdata.type !== "resend") {
+      //Go to profile AddOTP Number
+      if (userdata.type === "profileToOtp") {
+        dispatch(userForgetPassword({ email: userdata.email }));
+        setOtpPage(false);
+      }
+      //Go to Login AddOTP Number
+      if (userdata.type === "loginToOtp") {
         navigate("/login/addotp");
         dispatch(userForgetPassword({ email: userdata.email }));
       }

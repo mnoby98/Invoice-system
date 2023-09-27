@@ -2,45 +2,51 @@ import { Formik, Form } from "formik";
 import { useEffect, useState } from "react";
 import InputField from "../../ui/InputField";
 import Button from "../../ui/Button";
+import { useSelector } from "react-redux";
+import usePutOTP from "../Login/usePutOTP";
+import useAuthRequest from "../Login/useAuthRequest";
 
 function ProfileOtpNumber(props) {
-  // const [errorFromApi, setError] = useState();
-  // const [otp, setOtp] = useState();
-  // const email = useSelector((state) => state.user.userForgetPassword?.email);
-  // const { sendingOtp } = useAuthRequest({
-  //   userdata: { email, type: "resend" },
-  // });
+  const [errorFromApi, setError] = useState();
+  const [otp, setOtp] = useState();
+  const email = useSelector((state) => state.user.userForgetPassword?.email);
+  const { sendingOtp } = useAuthRequest({
+    userdata: { email, type: "resend" },
+  });
   const { setOtpPage, setNewPage } = props;
   const [timer, setTimer] = useState(9);
   const [disabled, setDisabled] = useState(true);
-  // const { isLoading, applyOTP } = usePutOTP({
-  //   handleSetError,
-  //   email,
-  //   otp,
-  // });
+  const { isLoading, applyOTP } = usePutOTP({
+    handleSetError,
+    email,
+    otp,
+    type: "ProfileToNewOpject",
+    setNewPage,
+  });
 
   const initialValues = {
     otpNumber: "",
   };
 
-  // function handleSetError(errorFromApi) {
-  //   setError(errorFromApi);
-  // }
+  function handleSetError(errorFromApi) {
+    setError(errorFromApi);
+  }
 
   const onSubmit = (values) => {
-    // const user = {
-    //   email: email,
-    //   otp: values.otpNumber,
-    // };
-    // setOtp({
-    //   otp: values.otpNumber,
-    // });
+    const user = {
+      email: email,
+      otp: values.otpNumber,
+    };
+    setOtp({
+      otp: values.otpNumber,
+    });
     console.log("user");
+
+    applyOTP({
+      email: email,
+      otp: values.otpNumber,
+    });
     setNewPage(true);
-    // applyOTP({
-    //   email: email,
-    //   otp: values.otpNumber,
-    // });
     console.log("number otp", values);
   };
 
@@ -64,7 +70,7 @@ function ProfileOtpNumber(props) {
 
   function handleResentOtp(e) {
     e.preventDefault();
-    // sendingOtp({ email: email, type: "resend" });
+    sendingOtp({ email: email, type: "resend" });
     setTimer(9);
     setDisabled(false);
   }
@@ -91,7 +97,7 @@ function ProfileOtpNumber(props) {
                   type="text"
                   label="Otp Number"
                   table="table"
-                  // error={errorFromApi}
+                  error={errorFromApi}
                 />
               </div>
 

@@ -3,7 +3,6 @@ import Home from "./ui/Home";
 import AppLayout from "./ui/AppLayout";
 import Login from "./Pages/Login/Login";
 import PageNotFound from "./ui/PageNotFound";
-import Invoice from "./Pages/Invoice/Invoice";
 import CreateInvoice from "./Pages/Invoice/CreateInvoice";
 import { QueryClient } from "@tanstack/react-query";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -15,6 +14,8 @@ import LoginForm from "./Pages/Login/LoginForm";
 import AuthNewPassword from "./Pages/Login/AuthNewPassword";
 import AuthOtp from "./Pages/Login/AuthOtp";
 import OtpNumber from "./Pages/Login/OtpNumber";
+import Dashboard from "./Pages/Invoice/DashBoard";
+import Invoice from "./Pages/Invoice/Invoice";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -40,7 +41,7 @@ function App() {
             >
               <Route index element={<Navigate replace to="/home" />} />
               <Route path="/home" element={<Home />} />
-              <Route path="/invoice" element={<Invoice />} />
+              <Route path="/dash-board" element={<Dashboard />} />
               <Route path="/create-invoice" element={<CreateInvoice />} />
               <Route path="/profile" element={<Profile />} />
             </Route>
@@ -51,6 +52,7 @@ function App() {
               <Route path="/login/addotp" element={<OtpNumber />} />
               <Route path="/login/auth" element={<AuthNewPassword />} />
             </Route>
+            <Route path="/invoice" element={<Invoice />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>

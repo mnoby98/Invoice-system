@@ -5,18 +5,21 @@ import { useEffect, useState } from "react";
 import { BeatLoader } from "react-spinners";
 import InputField from "../../ui/InputField";
 import Button from "../../ui/Button";
+import useAuthRequest from "../Login/useAuthRequest";
 
 const emailMatches = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
 
 function ProfileOtpEmail(props) {
-  // const [errorFromApi, setError] = useState();
+  const [errorFromApi, setError] = useState();
   const [email, setEmail] = useState();
+
   const { setEmailpage, setOtpPage } = props;
 
-  // const { isLoading, sendingOtp } = useAuthRequest({
-  //   handleSetError,
-  //   userdata: email,
-  // });
+  const { isLoading, sendingOtp } = useAuthRequest({
+    handleSetError,
+    userdata: { email, type: "profileToOtp" },
+    setOtpPage,
+  });
 
   const otpValues = {
     email: "",
@@ -30,16 +33,17 @@ function ProfileOtpEmail(props) {
   });
 
   const onSubmit = (values) => {
-    // setEmail({ email: values.email });
-    // sendingOtp({ email: values.email });
-    // setError("");
-    setOtpPage(false);
+    setEmail({ email: values.email });
+    sendingOtp({ email: values.email });
+    setError("");
+    // setEmailpage(false);
+    // setOtpPage(false);
     console.log(values);
   };
 
-  // function handleSetError(errorFromApi) {
-  //   setError(errorFromApi);
-  // }
+  function handleSetError(errorFromApi) {
+    setError(errorFromApi);
+  }
 
   return (
     <div className="ml-10 mr-10  pt-8">
@@ -67,7 +71,7 @@ function ProfileOtpEmail(props) {
                   type="text"
                   label="Email"
                   table="table"
-                  // error={errorFromApi?.errors?.email?.[0]}
+                  error={errorFromApi?.errors?.email?.[0]}
                 />
               </div>
 
@@ -78,8 +82,8 @@ function ProfileOtpEmail(props) {
                   type="submit"
                   // className=" mt-2 w-40 rounded-full  bg-emerald-500 p-2 text-center text-white sm:w-64 "
                 >
-                  {/* {isLoading ? <BeatLoader color="#ffffff" /> : "Sent OTP"} */}
-                  Sent OTP
+                  {isLoading ? <BeatLoader color="#ffffff" /> : "Sent OTP"}
+                  {/* Sent OTP */}
                 </Button>
               </div>
             </Form>

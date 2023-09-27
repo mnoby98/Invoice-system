@@ -3,22 +3,24 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import InputField from "../../ui/InputField";
 import Button from "../../ui/Button";
+import useNewPassword from "../Login/useNewPassword";
+import { useSelector } from "react-redux";
 
 function ProfileNewEdit(props) {
-  // const { email, otp } = useSelector((state) => state.user.userForgetPassword);
+  const { email, otp } = useSelector((state) => state.user.userForgetPassword);
 
-  // const [errorFromApi, setError] = useState();
+  const [errorFromApi, setError] = useState();
   const { setNewPage } = props;
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
 
-  // const { isLoading, newPassword } = useNewPassword({
-  //   handleError,
-  //   email,
-  //   otp,
-  //   password,
-  //   confirmPassword,
-  // });
+  const { isLoading, newPassword } = useNewPassword({
+    handleError,
+    email,
+    otp,
+    password,
+    confirmPassword,
+  });
 
   const newPasswordValues = {
     password: "",
@@ -35,23 +37,23 @@ function ProfileNewEdit(props) {
       .required("Required"),
   });
 
-  // function handleError(ErrorFromApi) {
-  //   setError(ErrorFromApi);
-  // }
+  function handleError(ErrorFromApi) {
+    setError(ErrorFromApi);
+  }
 
   const onSubmit = (values) => {
     console.log(values);
 
-    // setConfirmPassword({ password_confirmation: values.confirmPassword });
-    // setPassword({
-    //   password: values.password,
-    // });
-    // newPassword({
-    //   password: values.password,
-    //   password_confirmation: values.confirmPassword,
-    //   email: email,
-    //   otp: otp.otp,
-    // });
+    setConfirmPassword({ password_confirmation: values.confirmPassword });
+    setPassword({
+      password: values.password,
+    });
+    newPassword({
+      password: values.password,
+      password_confirmation: values.confirmPassword,
+      email: email,
+      otp: otp.otp,
+    });
   };
 
   return (
@@ -84,7 +86,7 @@ function ProfileNewEdit(props) {
                 placeholder="Enter new password"
                 label="Password"
                 table="table"
-                // error={errorFromApi}
+                error={errorFromApi}
               />
               <InputField
                 name="confirmPassword"
@@ -93,7 +95,7 @@ function ProfileNewEdit(props) {
                 placeholder="Enter Password"
                 label="Confirm password"
                 table="table"
-                // error={errorFromApi}
+                error={errorFromApi}
               />
             </div>
             <div className=" pb-3 text-center">

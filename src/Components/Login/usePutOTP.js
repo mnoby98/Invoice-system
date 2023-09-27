@@ -5,15 +5,21 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userForgetPassword } from "./loginSlice";
 
-function usePutOTP({ handleSetError, email, otp }) {
+function usePutOTP({ handleSetError, email, otp, type, setNewPage }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isLoading, mutate: applyOTP } = useMutation({
     mutationFn: putOTP,
     onSuccess: (data) => {
       toast.success(data.message);
-      dispatch(userForgetPassword({ email: email, otp: otp }));
-      navigate("/login/auth");
+      if (type === "ProfileToNewOpject") {
+        dispatch(userForgetPassword({ email: email, otp: otp }));
+        // setNewPage(false);
+      }
+      if (type !== "ProfileToNewOpject") {
+        dispatch(userForgetPassword({ email: email, otp: otp }));
+        navigate("/login/auth");
+      }
     },
     onError: (data) => {
       handleSetError(data.message);
