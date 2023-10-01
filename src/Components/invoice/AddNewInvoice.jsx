@@ -8,7 +8,7 @@ function AddNewInvoice() {
     <div>
       <div className="grid grid-cols-8 items-center  px-4  py-3  text-[#000000]">
         <p>Invoice </p>
-        <p>IDsssssss wwwwwwwwwwwwwwwwwww</p>
+        <p>ID</p>
         <p>{title} </p>
         <p>{description} </p>
         <button className="flex items-center ">

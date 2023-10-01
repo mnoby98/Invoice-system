@@ -9,10 +9,10 @@ const invoiceSlice = createSlice({
   initialState,
   reducers: {
     addInvoice(state, action) {
-      state.invoice = action.payload;
+      state.invoice.push(action.payload);
     },
     deleteInvoice(state, action) {
-      const deleteInvoice = state.invoice.filter(
+      state.invoice = state.invoice.filter(
         (item) => action.payload !== item.id,
       );
     },

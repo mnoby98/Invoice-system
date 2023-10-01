@@ -3,7 +3,7 @@ import Logo from "../../ui/Logo";
 
 function Invoice() {
   return (
-    <div className="relative  h-screen   bg-blue-50  ">
+    <div className="relative  h-screen   bg-[#1b3e5d]  ">
       <div className="  absolute right-[50%] top-[50%] mx-auto  my-auto   flex   w-full  max-w-2xl   translate-x-[50%] translate-y-[-50%] items-center justify-center rounded-lg bg-white px-10   py-8 shadow-2xl  ">
         <div className="mx-3  grid grid-rows-[auto_1fr_auto] gap-8 ">
           <div className=" w-98 my-2  flex  h-32  items-center justify-around border-b-2 border-black text-center">

@@ -16,6 +16,9 @@ import AuthOtp from "./Pages/Login/AuthOtp";
 import OtpNumber from "./Pages/Login/OtpNumber";
 import Dashboard from "./Pages/Invoice/DashBoard";
 import Invoice from "./Pages/Invoice/Invoice";
+import CreateCurrency from "./Pages/currency/CreateCurrency";
+import CurrenciesTable from "./Pages/currency/CurrenciesTable";
+import EditCurrency from "./Pages/currency/EditCurrency";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -44,6 +47,9 @@ function App() {
               <Route path="/dash-board" element={<Dashboard />} />
               <Route path="/create-invoice" element={<CreateInvoice />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/currency" element={<CurrenciesTable />} />
+              <Route path="/create-currency" element={<CreateCurrency />} />
+              <Route path="/edit-currency" element={<EditCurrency />} />
             </Route>
             <Route element={<Login />}>
               <Route index element={<Navigate replace to="/login" />} />

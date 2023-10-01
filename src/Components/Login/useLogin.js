@@ -16,7 +16,7 @@ function useLogin({ handleError }) {
       toast.success(response.message);
       localStorage.setItem("token", response.data.token);
       dispatch(loginUser(response.data));
-      navigate("/invoice");
+      navigate("/dash-board");
     },
     onError: (errorFormApi) => {
       toast.error(errorFormApi.message);

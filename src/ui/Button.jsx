@@ -15,7 +15,7 @@ function Button({ design, children, onClick, to, type, disabled }) {
 
   if (to)
     return (
-      <Link to={to} className={styled[design]}>
+      <Link to={to} type="submit" className={styled[design]}>
         {children}
       </Link>
     );

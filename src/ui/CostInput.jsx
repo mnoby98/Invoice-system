@@ -1,11 +1,8 @@
 import { ErrorMessage, Field } from "formik";
 import ErrorText from "./ErrorText";
-import { useState } from "react";
 
 function CostInput(props) {
-  const { name1, name2, placeholder, id, id2, type, label, error, table } =
-    props;
-  const [curr, setCurr] = useState();
+  const { name1, name2, placeholder, id, type, label, error, table } = props;
 
   return (
     <div
@@ -54,27 +51,6 @@ function CostInput(props) {
             <option value="USD">USD</option>
             <option value="Euro">Euro</option>
           </Field>
-          {/* <Field name={name2}>
-            {(props) => {
-              const { meta, field } = props;
-              return (
-                <select
-                  id={name2}
-                  className={`w-40 grow rounded-[8px] border-[1px] ${
-                    (meta.touched && meta.error) || error != null
-                      ? " border-red-500"
-                      : " border-stone-400 "
-                  }  px-1  py-1  text-[18px] font-normal focus:outline-none    sm:w-auto`}
-                  {...field}
-                  value={curr}
-                  onChange={(e) => setCurr(e.target.value)}
-                >
-                  <option value="usa">Use</option>
-                  <option value="euro">Euro</option>
-                </select>
-              );
-            }}
-          </Field> */}
           {error == null ? (
             <ErrorMessage name={name2} component={ErrorText} />
           ) : (
