@@ -2,7 +2,8 @@ import { ErrorMessage, Field } from "formik";
 import ErrorText from "./ErrorText";
 
 function CostInput(props) {
-  const { name1, name2, placeholder, id, type, label, error, table } = props;
+  const { name1, name2, placeholder, id, type, label, error, error2, table } =
+    props;
 
   return (
     <div
@@ -48,13 +49,13 @@ function CostInput(props) {
             }  px-1  py-1  text-[18px] font-normal focus:outline-none    sm:w-auto`}
           >
             <option value="">Select Currency</option>
-            <option value="USD">USD</option>
-            <option value="Euro">Euro</option>
+            <option value="1">USD</option>
+            <option value="2">Euro</option>
           </Field>
-          {error == null ? (
+          {error2 == null ? (
             <ErrorMessage name={name2} component={ErrorText} />
           ) : (
-            <ErrorText>{error} </ErrorText>
+            <ErrorText>{error2} </ErrorText>
           )}
         </div>
       </div>

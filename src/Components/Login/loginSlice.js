@@ -17,7 +17,6 @@ const loginSlice = createSlice({
     },
     userForgetPassword(state, action) {
       state.userForgetPassword = action.payload;
-      console.log(action.payload);
     },
   },
 });

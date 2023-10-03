@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   invoice: [],
+  invoiceDelete: [],
 };
 
 const invoiceSlice = createSlice({
@@ -9,12 +10,13 @@ const invoiceSlice = createSlice({
   initialState,
   reducers: {
     addInvoice(state, action) {
-      state.invoice.push(action.payload);
+      state.invoice = action.payload;
     },
     deleteInvoice(state, action) {
-      state.invoice = state.invoice.filter(
-        (item) => action.payload !== item.id,
-      );
+      state.invoiceDelete = action.payload;
+      // state.invoice = state.invoice.filter(
+      //   (item) => action.payload !== item.id,
+      // );
     },
     editInvoice(state, action) {
       const editInvoice = state.invoice.find(
@@ -24,6 +26,6 @@ const invoiceSlice = createSlice({
   },
 });
 
-export const { addInvoice } = invoiceSlice.actions;
+export const { addInvoice, deleteInvoice } = invoiceSlice.actions;
 
 export default invoiceSlice.reducer;

@@ -8,7 +8,7 @@ const currencySlice = createSlice({
   initialState,
   reducers: {
     addCurrency(state, action) {
-      state.currency.push(action.payload);
+      state.currency = action.payload;
     },
     editCurrency(state, action) {
       state.currency = state.currency.find(

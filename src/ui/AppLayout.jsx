@@ -9,7 +9,7 @@ function AppLayout() {
       <SideBar />
       <div className=" grid   grid-rows-[auto_1fr]  ">
         <Header />
-        <main className=" h-screen   overflow-y-scroll bg-[#f2f8fa]">
+        <main className=" h-screen  overflow-y-scroll bg-[#f2f8fa] ">
           <Outlet />
         </main>
       </div>

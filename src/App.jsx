@@ -23,7 +23,7 @@ import EditCurrency from "./Pages/currency/EditCurrency";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000,
+      staleTime: 10,
     },
   },
 });

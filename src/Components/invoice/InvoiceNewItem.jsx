@@ -6,7 +6,7 @@ import RadioField from "../../ui/RadioField";
 
 function InvoiceNewItem() {
   const options = [
-    { key: "Precentage", value: "precentage" },
+    { key: "Precentage", value: "percentage" },
     { key: "Fixed", value: "fixed" },
   ];
 

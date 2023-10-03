@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useSelector } from "react-redux";
 
 const Url = "https://api-invoices.twice-m.com/api";
@@ -22,8 +23,9 @@ async function loginApi(emailAndPassword) {
 
 export async function GetCurrentUser() {
   const tokenValue = localStorage.getItem("token");
-  if (!tokenValue) return null;
-  console.log("token", tokenValue);
+  if (!tokenValue) {
+    return;
+  }
   const res = await fetch(`${Url}/user`, {
     headers: {
       Accept: "application/json",
@@ -33,11 +35,11 @@ export async function GetCurrentUser() {
   });
 
   const data = await res.json();
-  console.log("data from  Api use", data);
   if (!res.ok) {
+    alert("data from geterrocurrency", data);
     throw data;
   }
-  return data?.data;
+  return data;
 }
 
 export async function getOtp(email) {

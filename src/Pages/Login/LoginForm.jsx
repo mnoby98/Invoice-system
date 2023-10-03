@@ -45,7 +45,7 @@ function LoginForm() {
       email: values.email,
       password: values.password,
     };
-    setError(null);
+    setError("");
 
     login(user);
 

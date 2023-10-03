@@ -1,7 +1,8 @@
-import { useNavigate } from "react-router-dom";
+import { Route, Router, useNavigate } from "react-router-dom";
 import useUser from "../Components/Login/useUser";
 import { BeatLoader } from "react-spinners";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 function ProtectRoute({ children }) {
   const navigate = useNavigate();
@@ -9,19 +10,18 @@ function ProtectRoute({ children }) {
   const { isLoading, data, error } = useUser();
 
   //3. If there is no authenticated user , redirect to the /login
+  const tooke = useSelector((state) => state?.user?.user?.token);
   const token = localStorage.getItem("token");
-  console.log("daaaaaaaa", data?.data?.token);
-  const datatoken = data?.data?.token === undefined;
 
   useEffect(
     function () {
-      if (!datatoken && !isLoading) navigate("/login");
+      if (!token && !isLoading) navigate("/login");
     },
-    [isLoading, navigate, datatoken],
+    [token, navigate, isLoading],
   );
 
   //2. While loading ,show a spinner
-  // if (isLoading) return <Spinner />;
+  if (isLoading) return <Spinner />;
 
   //4. If there IS a user ,render the app
   if (!error) return children;
