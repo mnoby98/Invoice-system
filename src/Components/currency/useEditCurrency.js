@@ -4,20 +4,20 @@ import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-function useEditCurrency({ handleError }) {
+function useEditCurrency({ handleError, currencyDataToApi }) {
   const navigate = useNavigate();
-  const Currency = useSelector((state) => state.currency.currency);
+  // const Currency = useSelector((state) => state.currency.currency);
 
   const { mutate: editCurrency, isLoading: isEditing } = useMutation({
-    mutationFn: () => EditCurrency(Currency),
+    mutationFn: () => EditCurrency(currencyDataToApi),
     onSuccess: (data) => {
       toast.success(data.message);
       navigate("/currency");
     },
     onError: (errorFormApi) => {
-      toast.error("test Form Error");
+      toast.error(errorFormApi.message);
       alert("errorFormApi", errorFormApi);
-      handleError(errorFormApi.errors);
+      handleError(errorFormApi);
     },
   });
   return { editCurrency, isEditing };

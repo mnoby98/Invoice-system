@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 function useDeleteInvoice() {
   const queryClient = useQueryClient();
   const deleteData = useSelector((state) => state.invoice.invoiceDelete);
-  console.log("deleteData form useDeleteInvoice", deleteData);
   const { mutate: deleteInvoice, isLoading } = useMutation({
     mutationFn: () => deleteInvoiceFromApi(deleteData),
     onSuccess: () => {

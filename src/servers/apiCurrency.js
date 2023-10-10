@@ -19,9 +19,28 @@ export async function GetCurrency(userToken) {
 
   return data;
 }
+export async function GetCurrencyByID(currencyDataForApi) {
+  console.log("currencyDataForApi", currencyDataForApi);
+  const { currencyID, userToken } = currencyDataForApi;
+  const res = await fetch(`${Url}/currencies/${currencyID}`, {
+    headers: {
+      Accept: "application/json",
+      Authorization: "Bearer " + userToken,
+      "Content-Type": "application/json",
+    },
+  });
 
-export async function EditCurrency(Currency) {
-  const { title, symbol, id, status, userToken } = Currency;
+  const data = res.json();
+
+  if (!res.ok) {
+    throw data;
+  }
+
+  return data;
+}
+
+export async function EditCurrency(currencyDataToApi) {
+  const { title, symbol, id, status, userToken } = currencyDataToApi;
 
   const res = await fetch(`${Url}/currencies/${id}`, {
     method: "PUT",
@@ -33,7 +52,8 @@ export async function EditCurrency(Currency) {
     body: JSON.stringify({
       title: title,
       symbol: symbol,
-      status: status === "true" ? true : false,
+      // status: status === "true" ? true : false,
+      status: status,
     }),
   });
   const data = res.json();

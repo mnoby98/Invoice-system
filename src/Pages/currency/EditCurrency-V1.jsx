@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addCurrency } from "../../Components/currency/CurrenctSlice";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useEditCurrency from "../../Components/currency/useEditCurrency";
 import RadioField from "../../ui/RadioField";
 import useGetCurrencyByID from "../../Components/currency/useGetCurrencyByID";
@@ -17,35 +17,34 @@ function EditCurrency() {
     currencyID,
     userToken,
   });
-  const [currencyDataToApi, setCurrencyDataToApi] = useState();
   console.log("currencyData", currencyData);
   console.log(userToken);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [errorFromApi, setError] = useState();
   const Currency = useSelector((state) => state.currency.currency);
-  const currencyTitle = currencyData?.data?.title;
-  const currencySymbol = currencyData?.data?.symbol;
-  const currencyStatus = currencyData?.data?.status;
+  const currencyTitle = Currency.title;
+  const currencySymbol = Currency.symbol;
+  const currencyStatus = Currency.status;
+  const currencyToken = Currency.userToken;
+  console.log("currencyStatus", currencyStatus);
 
-  const { editCurrency, isEditing } = useEditCurrency({
-    handleError,
-    currencyDataToApi,
-  });
+  const { editCurrency, isEditing } = useEditCurrency({ handleError });
 
   const options = [
-    { key: "true", value: true },
-    { key: "false", value: false },
+    { key: "true", value: "true" },
+    { key: "false", value: "false" },
   ];
-  const [newValues, setNewValues] = useState();
+
   const intialValues = {
     title: currencyTitle || "",
     symbol: currencySymbol || "",
-    status: currencyStatus || "",
+    status: "false" || currencyStatus,
   };
 
   function handleError(errorFromApi) {
     setError(errorFromApi);
+    console.log("error", errorFromApi);
   }
 
   const validationSchema = Yup.object({
@@ -53,26 +52,30 @@ function EditCurrency() {
     symbol: Yup.string().required("Field Is required"),
     status: Yup.string().required("Field Is required"),
   });
-
   const onSubmit = (values) => {
-    const currency = {
-      title: values.title,
-      symbol: values.symbol,
-      status: values.status,
-      userToken: userToken,
-      id: currencyID,
-    };
-    setCurrencyDataToApi(() => currency);
+    // if (!values) return;
+    console.log(values);
     editCurrency({
       title: values.title,
       symbol: values.symbol,
-      status: values.status,
+      status: currencyStatus,
     });
+
+    dispatch(
+      addCurrency({
+        title: values.title,
+        symbol: values.symbol,
+        status: values.status,
+        id: Currency.id,
+        userToken: currencyToken,
+      }),
+    );
   };
 
   return (
     <InputFormik
       initialProps={intialValues}
+      // validationProps={validationSchema}
       onSubmitProps={onSubmit}
       edit="edit"
     >
@@ -83,7 +86,7 @@ function EditCurrency() {
         table="table"
         placeholder="Enter Title"
         type="text"
-        error={errorFromApi?.errors?.title}
+        error={errorFromApi?.errors?.[0]}
       />
       <InputField
         name="symbol"
@@ -92,7 +95,7 @@ function EditCurrency() {
         table="table"
         placeholder="Enter symbol"
         type="text"
-        error={errorFromApi?.errors?.symbol}
+        error={errorFromApi?.errors?.[1]}
       />
       <RadioField
         mainLabel="Status"
@@ -100,7 +103,6 @@ function EditCurrency() {
         table="table"
         name="status"
         id="status"
-        error={errorFromApi?.errors?.status}
       />
     </InputFormik>
   );

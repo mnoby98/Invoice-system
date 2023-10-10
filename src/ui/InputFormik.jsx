@@ -16,6 +16,7 @@ function InputFormik(props) {
           onSubmit={onSubmit}
           validationSchema={validationSchema}
           initialValues={initialValues}
+          enableReinitialize
         >
           <Form className="  rounded-lg border-2 border-gray-300 bg-white">
             <div className="mx-8 flex items-center justify-between ">

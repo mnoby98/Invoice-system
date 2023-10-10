@@ -19,6 +19,7 @@ import Invoice from "./Pages/Invoice/Invoice";
 import CreateCurrency from "./Pages/currency/CreateCurrency";
 import CurrenciesTable from "./Pages/currency/CurrenciesTable";
 import EditCurrency from "./Pages/currency/EditCurrency";
+import EditInvoice from "./Pages/Invoice/EditInvoice";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -46,10 +47,19 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/dash-board" element={<Dashboard />} />
               <Route path="/create-invoice" element={<CreateInvoice />} />
+              <Route
+                path="/edit-invoice/:invoiceId"
+                element={<EditInvoice />}
+                // loader={InvoiceDetailsLoader}
+              />
               <Route path="/profile" element={<Profile />} />
               <Route path="/currency" element={<CurrenciesTable />} />
               <Route path="/create-currency" element={<CreateCurrency />} />
-              <Route path="/edit-currency" element={<EditCurrency />} />
+              <Route
+                path="/edit-currency/:currencyID"
+                element={<EditCurrency />}
+              />
+              {/* <Route path="/edit-currency" element={<EditCurrency />} /> */}
             </Route>
             <Route element={<Login />}>
               <Route index element={<Navigate replace to="/login" />} />

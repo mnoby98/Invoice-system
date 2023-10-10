@@ -1,4 +1,4 @@
-import { Formik, Form, FieldArray } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import Button from "../../ui/Button";
 import InputField from "../../ui/InputField";
@@ -114,7 +114,9 @@ function CreateInvoice() {
       description: values.description,
       currency_id: values.currency,
       total: values.cost,
-      totals: values.totals,
+      totals: [
+        { title: values.itemTitle, cost: values.price, type: values.type },
+      ],
       // totals: [
       //   { title: values.itemTitle, cost: values.price, type: values.type },
       // ],
@@ -134,16 +136,14 @@ function CreateInvoice() {
           // initialValues={addItem ? initialValuesWithItem : initialValues}
           initialValues={initialValuesWithItem}
           onSubmit={onSubmit}
+          enableReinitialize
         >
-          {({ formik, values }) => {
-            console.log("formik", formik);
-            console.log("values", values);
+          {(formik) => {
+            // console.log(formik);
             return (
-              <Form className="     rounded-lg border-2  bg-white pb-4 pt-2   ">
-                <div className="my-3 flex  justify-between border-b px-3 pb-2">
-                  <p className="rounded-lg bg-[#04749c] px-2 py-1    text-xl font-semibold text-white">
-                    Create incident report
-                  </p>
+              <Form className=" rounded-lg   border-2  bg-white pb-4 pt-2   ">
+                <div className="my-3 flex justify-between border-b px-3 pb-2">
+                  <p>Create incident report</p>
                   <div className="flex items-center justify-between gap-4">
                     <button
                       disabled={isCreating}
@@ -157,7 +157,7 @@ function CreateInvoice() {
                     </Button>
                   </div>
                 </div>
-                <div className="mx-auto max-w-[50%] border-b-2     py-16">
+                <div className="mx-auto max-w-[50%]     py-10">
                   <InputField
                     id="title"
                     name="title"
@@ -189,87 +189,51 @@ function CreateInvoice() {
                     currenciesOptions={optionsofCurrenies}
                   />
                 </div>
-                <FieldArray name="totals">
-                  {({ insert, remove, push }) => (
-                    <div>
-                      {values.totals.length > 0 &&
-                        values.totals.map((item, i) => (
-                          <div
-                            className="mx-auto max-w-[50%] border-b-2  py-2"
-                            key={i}
-                          >
-                            <div className="">
-                              <div className="flex  justify-between py-2">
-                                <p className="rounded-lg bg-[#04749c] px-6 py-1 text-2xl text-white">{`item ${i}`}</p>
-                                <div className="col">
-                                  <button
-                                    design="addItem"
-                                    className=" rounded-lg bg-red-300 px-2 py-1 text-xl font-medium"
-                                    type="button"
-                                    onClick={() => remove(i)}
-                                  >
-                                    Delete Item
-                                  </button>
-                                </div>
-                              </div>
-                              <InputField
-                                name={`totals.${i}.title`}
-                                id={`totals.${i}.title`}
-                                table="table"
-                                label="Item Title"
-                                placeholder="Title"
-                                type="text"
-                                error={
-                                  errorFromApi?.errors?.[`totals.${i}.title`]
-                                }
-                              />
-                              <RadioField
-                                options={options}
-                                id={`totals.${i}.type`}
-                                name={`totals.${i}.type`}
-                                label="percentage "
-                                table="table"
-                                label2="fixed"
-                                value1="percentage"
-                                value2="fixed"
-                                mainLabel="Type"
-                                error={
-                                  errorFromApi?.errors?.[`totals.${i}.type`]
-                                }
-                              />
-                              <InputField
-                                id={`totals.${i}.cost`}
-                                name={`totals.${i}.cost`}
-                                table="table"
-                                label="Price"
-                                type="text"
-                                error={
-                                  errorFromApi?.errors?.[`totals.${i}.cost`]
-                                }
-                              />
-                            </div>
-                          </div>
-                        ))}
-
-                      <div className=" mx-auto max-w-[50%]  py-2 text-center">
-                        <Button
-                          className=" "
-                          design="addItem"
-                          type="button"
-                          onClick={() => {
-                            push({
-                              title: "",
-                              cost: "",
-                              type: "",
-                            });
-                          }}
-                        >
-                          Add new item
-                        </Button>
-                      </div>
-                    </div>
-                  )}
-                </FieldArray>
+                {/* {initialValuesWithItem.totals.map((item) => (
+                  <div>122</div>
+                ))} */}
+                {initialValuesWithItem.totals.map((item, i) => {
+                  <div className="mx-auto max-w-[50%]  py-2">
+                    <InputField
+                      id={`totals.${i}.title`}
+                      name={`totals.${i}.title`}
+                      table="table"
+                      label="Item Title"
+                      type="text"
+                      placeholder="Enter the title"
+                      error={errorFromApi?.errors.titleError}
+                    />
+                    {/* <RadioField
+                      options={options}
+                      id="type"
+                      name="type"
+                      label="percentage "
+                      table="table"
+                      label2="fixed"
+                      value1="percentage"
+                      value2="fixed"
+                      mainLabel="Type"
+                      error={errorFromApi?.errors.totals?.[0].type}
+                    />
+                    <InputField
+                      id="price"
+                      name="price"
+                      table="table"
+                      label="Price"
+                      type="text"
+                      error={errorFromApi?.errors.totals?.[0].cost}
+                    /> */}
+                  </div>;
+                })}
+                <div className="mx-auto my-3 max-w-[50%] border-b px-3 pb-2">
+                  <Button
+                    onClick={() => handelAddItem(formik)}
+                    type="button"
+                    design="addItem"
+                  >
+                    Add new item
+                  </Button>
+                </div>
               </Form>
             );
           }}

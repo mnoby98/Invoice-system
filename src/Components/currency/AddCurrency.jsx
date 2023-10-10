@@ -8,9 +8,9 @@ function AddCurrency({ currency, setNoData }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userToken = useSelector((state) => state?.user?.user?.token);
-  if (currency !== undefined) {
-    setNoData(() => false);
-  }
+  // if (currency !== undefined) {
+  //   setNoData(() => false);
+  // }
   return (
     <div>
       <div className="grid grid-cols-[1fr_1fr_1fr] justify-items-center   px-4 py-3  text-black">
@@ -20,16 +20,16 @@ function AddCurrency({ currency, setNoData }) {
           onClick={(e) => {
             e.preventDefault();
             console.log("eeeeeeee", currency.title);
-            dispatch(
-              addCurrency({
-                title: currency.title,
-                symbol: currency.symbol,
-                id: currency.id,
-                status: currency.status,
-                userToken,
-              }),
-            );
-            navigate("/edit-currency");
+            // dispatch(
+            //   addCurrency({
+            //     title: currency.title,
+            //     symbol: currency.symbol,
+            //     id: currency.id,
+            //     status: currency.status,
+            //     userToken,
+            //   }),
+            // );
+            navigate(`/edit-currency/${currency.id}`);
           }}
           design="active"
         >

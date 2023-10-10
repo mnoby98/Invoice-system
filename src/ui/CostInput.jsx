@@ -2,8 +2,29 @@ import { ErrorMessage, Field } from "formik";
 import ErrorText from "./ErrorText";
 
 function CostInput(props) {
-  const { name1, name2, placeholder, id, type, label, error, error2, table } =
-    props;
+  const {
+    name1,
+    name2,
+    placeholder,
+    id,
+    type,
+    label,
+    error,
+    error2,
+    table,
+    currenciesOptions,
+    currency,
+  } = props;
+  // console.log("currency from costInput", currency);
+  // const idCurrency = currenciesOptions.find((curr) => curr.title === currency);
+  function getCurencyId(array, thatTitle) {
+    const currencyID = array?.find((curr) => curr?.title === thatTitle);
+    return currencyID;
+  }
+
+  console.log("that curr ", getCurencyId(currenciesOptions, currency));
+  // console.log("that curr ", currency?.title);
+  // console.log("that curr ", currency);
 
   return (
     <div
@@ -24,11 +45,11 @@ function CostInput(props) {
                   placeholder={placeholder}
                   id={id}
                   type={type}
-                  className={`w-40 grow rounded-[8px] border-[1px] ${
+                  className={`w-40 grow rounded-l-[8px] border-[1px]  ${
                     (meta.touched && meta.error) || error != null
                       ? " border-red-500"
                       : " border-stone-400 "
-                  }  px-1  py-1  text-[18px] font-normal focus:outline-none    sm:w-auto`}
+                  }  px-1  py-[5px]  text-[18px] font-normal focus:outline-none    sm:w-auto`}
                   {...field}
                 />
               );
@@ -43,14 +64,20 @@ function CostInput(props) {
         <div className="flex h-4 flex-col">
           <Field
             name={name2}
+            // defaultValue={currency}
             as="select"
-            className={`w-40 grow rounded-[8px] border-[1px] ${
+            className={`w-40 grow rounded-r-[8px] border-[1px]  border-l-0 ${
               error != null ? " border-red-500" : " border-stone-400 "
-            }  px-1  py-1  text-[18px] font-normal focus:outline-none    sm:w-auto`}
+            }  px-1  py-[6px]  text-[18px] font-normal focus:outline-none    sm:w-auto`}
           >
-            <option value="">Select Currency</option>
-            <option value="1">USD</option>
-            <option value="2">Euro</option>
+            <option value={currency || ""}>
+              {currency || "Select Currency"}
+            </option>
+            {currenciesOptions?.map((option) => (
+              <option key={option.id} value={option.id}>
+                {option.title}
+              </option>
+            ))}
           </Field>
           {error2 == null ? (
             <ErrorMessage name={name2} component={ErrorText} />
