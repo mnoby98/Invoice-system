@@ -8,16 +8,19 @@ function ProtectRoute({ children }) {
   const navigate = useNavigate();
   //1. Load the authenticated user
   const { isLoading, data, error } = useUser();
+  console.log("data from protectROute", data);
+  const tokenFromApi = data?.data?.token;
 
+  console.log("data from protectROute", tokenFromApi);
   //3. If there is no authenticated user , redirect to the /login
-  const tooke = useSelector((state) => state?.user?.user?.token);
-  const token = localStorage.getItem("token");
+  // const tooke = useSelector((state) => state?.user?.user?.token);
+  // const token = localStorage.getItem("token");
 
   useEffect(
     function () {
-      if (!token && !isLoading) navigate("/login");
+      if (!tokenFromApi && !isLoading) navigate("/login");
     },
-    [token, navigate, isLoading],
+    [tokenFromApi, navigate, isLoading],
   );
 
   //2. While loading ,show a spinner

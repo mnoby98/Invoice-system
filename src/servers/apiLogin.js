@@ -1,6 +1,3 @@
-import { useMemo } from "react";
-import { useSelector } from "react-redux";
-
 const Url = "https://api-invoices.twice-m.com/api";
 
 async function loginApi(emailAndPassword) {
@@ -21,11 +18,11 @@ async function loginApi(emailAndPassword) {
   return data;
 }
 
-export async function GetCurrentUser() {
-  const tokenValue = localStorage.getItem("token");
-  if (!tokenValue) {
-    return;
-  }
+export async function GetCurrentUser(tokenValue) {
+  // const tokenValue = localStorage.getItem("token");
+  // if (!tokenValue) {
+  //   return;
+  // }
   const res = await fetch(`${Url}/user`, {
     headers: {
       Accept: "application/json",
@@ -74,6 +71,7 @@ export async function putOTP(emailAndOtp) {
   return data;
 }
 export async function changePassword(EOPP) {
+  //EOPP Email OTP  NewPassword ConfirmNew-Password
   console.log("EOPP", EOPP);
   const res = await fetch(`${Url}/auth/change-otp-password`, {
     method: "POST",

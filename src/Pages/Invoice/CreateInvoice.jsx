@@ -57,28 +57,18 @@ function CreateInvoice() {
       //   type: "",
       // },
     ],
-    // itemTitle: "",
-    // type: "",
-    // price: "",
+    email: "",
+    name: "",
   };
   console.log(initialValuesWithItem.totals);
   function handelAddItem(formik) {
     // e.preventDefault();
-    // setAddItem((add) => !add);
     initialValuesWithItem.totals.push({
       title: "",
       cost: "",
       type: "",
     });
-    // formik?.values?.totals.push({
-    //   title: "",
-    //   cost: "",
-    //   type: "",
-    // });
     formik.resetForm();
-
-    console.log("ssssss", formik);
-
     initialValuesWithItem.totals.map((item) => console.log("items", item));
   }
   const validationSchema = Yup.object({
@@ -125,8 +115,8 @@ function CreateInvoice() {
   };
 
   return (
-    <div className="h-full  bg-blue-100 ">
-      <div className="mr-2  px-8   pt-6 ">
+    <div className="h-full  bg-[#f2f8fa] ">
+      <div className="mr-2  bg-[#f2f8fa] px-8 pb-8  pt-6 ">
         <Formik
           // validationSchema={
           //   addItem ? validationSchemaWithItem : validationSchema
@@ -159,12 +149,30 @@ function CreateInvoice() {
                 </div>
                 <div className="mx-auto max-w-[50%] border-b-2     py-16">
                   <InputField
+                    id="email"
+                    name="email"
+                    table="table"
+                    label="E-mail"
+                    type="text"
+                    placeholder="example@example.com"
+                    error={errorFromApi?.errors.title}
+                  />
+                  <InputField
+                    id="name"
+                    name="name"
+                    table="table"
+                    label="Name"
+                    type="text"
+                    placeholder="Mahmoud Mahmoud"
+                    error={errorFromApi?.errors.title}
+                  />
+                  <InputField
                     id="title"
                     name="title"
                     table="table"
                     label="Title"
                     type="text"
-                    placeholder="Enter the title"
+                    placeholder="T-Shirt"
                     error={errorFromApi?.errors.title}
                   />
                   <TextArea
@@ -172,7 +180,7 @@ function CreateInvoice() {
                     name="description"
                     table="table"
                     label="Description"
-                    placeholder="Enter the description"
+                    placeholder="Red T-Shirt with  collar"
                     error={errorFromApi?.errors.description}
                   />
                   <CostInput
@@ -183,7 +191,7 @@ function CreateInvoice() {
                     table="table"
                     label="Cost"
                     type="number"
-                    placeholder="Enter the currency"
+                    placeholder="120"
                     error={errorFromApi?.errors.total}
                     error2={errorFromApi?.errors.currency_id}
                     currenciesOptions={optionsofCurrenies}
@@ -217,7 +225,7 @@ function CreateInvoice() {
                                 id={`totals.${i}.title`}
                                 table="table"
                                 label="Item Title"
-                                placeholder="Title"
+                                placeholder="Tax"
                                 type="text"
                                 error={
                                   errorFromApi?.errors?.[`totals.${i}.title`]
@@ -243,6 +251,7 @@ function CreateInvoice() {
                                 table="table"
                                 label="Price"
                                 type="text"
+                                placeholder="14"
                                 error={
                                   errorFromApi?.errors?.[`totals.${i}.cost`]
                                 }

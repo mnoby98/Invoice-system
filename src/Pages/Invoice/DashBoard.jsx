@@ -6,8 +6,8 @@ function Dashboard() {
     e.preventDefault();
   }
   return (
-    <div className="relative z-0   grid h-full  grid-cols-[1fr]   sm:grid-rows-[auto_1fr] ">
-      <div className="     mr-2  px-12  pt-8  ">
+    <div className="   grid grid-cols-[1fr]  bg-[#f2f8fa]  pb-8  sm:grid-rows-[auto_1fr] ">
+      <div className="   mr-2 px-12      pt-8  ">
         <InvoiceNav handleClick={handleClick} />
         <TableData handleClick={handleClick} />
       </div>

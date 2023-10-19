@@ -58,7 +58,7 @@ function CurrenciesTable() {
   ) : (
     <>
       <div className="relative z-0 grid  h-full grid-cols-[1fr]     sm:grid-rows-[auto_1fr] ">
-        <div className="  mb-5   mr-2  px-12  pt-8  ">
+        <div className="  mb-5 mr-2 bg-[#f2f8fa]  px-12  pb-10  pt-8  ">
           <CurrencyNav setEdit={setEdit} />
           <div className="mt-8  h-[800px] divide-y-2 divide-[#dee2e6] rounded-md border-2 border-solid border-[#e0e5e7] bg-white       text-lg  font-[400]  ">
             <div className="grid grid-cols-[1fr_1fr_1fr] justify-items-center   px-4 py-3  text-[#04749c]">

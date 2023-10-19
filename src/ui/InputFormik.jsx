@@ -1,8 +1,5 @@
 import { Form, Formik } from "formik";
-// import InputField from "../../ui/InputField";
 import Button from "../ui/Button";
-import { useState } from "react";
-// import { useSelector } from "react-redux";
 
 function InputFormik(props) {
   const { initialProps, validationProps, onSubmitProps, edit } = props;

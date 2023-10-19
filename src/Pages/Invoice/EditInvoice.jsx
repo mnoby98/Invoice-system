@@ -66,33 +66,14 @@ function EditInvoice() {
   const id = invoiceWithId?.data.id;
   console.log("invoiceWithId.data", invoiceWithId?.data);
 
-  // const initialValues = {
-  //   title: title || "",
-  //   description: description || "",
-  //   cost: cost || "",
-  //   currency: currency || "",
-  // };
-  // const initialValuesWithItem = {
-  //   title: title ||"",
-  //   description: "",
-  //   cost: "",
-  //   currency: "",
-  //   totals: [
-  //     // {
-  //     //   title: "",
-  //     //   cost: "",
-  //     //   type: "",
-  //     // },
-  //   ],
   const initialValuesWithItem = {
     title: title || "",
     description: description || "",
     cost: cost || "",
     currency: currency || "",
     totals: totals || [],
-    // itemTitle: totals?.[0].title || "",
-    // type: totals?.[0].type || "",
-    // price: totals?.[0].cost || "",
+    email: "",
+    name: "",
   };
 
   const validationSchema = Yup.object({
@@ -133,21 +114,16 @@ function EditInvoice() {
   return isLoadingInvoice && isLoading ? (
     <Spinner />
   ) : (
-    <div className="h-full  bg-blue-100 ">
-      <div className="mr-2  px-8   pt-6 ">
+    <div className="   h-screen bg-[#f2f8fa]  ">
+      <div className="  bg-[#f2f8fa]    px-8  py-6 ">
         <Formik
-          // validationSchema={
-          //   addItem ? validationSchemaWithItem : validationSchema
-          // }
-          // initialValues={addItem ? initialValuesWithItem : initialValues}
           initialValues={initialValuesWithItem}
           onSubmit={onSubmit}
           enableReinitialize
         >
           {({ formik, values }) => {
-            // console.log(formik);
             return (
-              <Form className=" rounded-lg   border-2  bg-white pb-4 pt-2   ">
+              <Form className=" rounded-lg   border-2  bg-white py-4   ">
                 <div className="my-3 flex justify-between border-b px-3 pb-2">
                   <p className=" rounded-full bg-[#04749c] px-2 py-1 font-semibold text-white">
                     Edit incident report
@@ -167,12 +143,30 @@ function EditInvoice() {
                 </div>
                 <div className="mx-auto max-w-[50%]     py-10">
                   <InputField
+                    id="email"
+                    name="email"
+                    table="table"
+                    label="E-mail"
+                    type="text"
+                    placeholder="example@example.com"
+                    error={errorFromApi?.errors.title}
+                  />
+                  <InputField
+                    id="name"
+                    name="name"
+                    table="table"
+                    label="Name"
+                    type="text"
+                    placeholder="Mahmoud Mahmoud"
+                    error={errorFromApi?.errors.title}
+                  />
+                  <InputField
                     id="title"
                     name="title"
                     table="table"
                     label="Title"
                     type="text"
-                    placeholder="Enter the title"
+                    placeholder="T-Shirt"
                     error={errorFromApi?.errors.title}
                   />
                   <TextArea
@@ -180,7 +174,7 @@ function EditInvoice() {
                     name="description"
                     table="table"
                     label="Description"
-                    placeholder="Enter the description"
+                    placeholder="Red T-Shirt with  collar"
                     error={errorFromApi?.errors.description}
                   />
                   <CostInput
@@ -191,22 +185,12 @@ function EditInvoice() {
                     table="table"
                     label="Cost"
                     type="number"
-                    placeholder="Enter the currency"
+                    placeholder="120"
                     error={errorFromApi?.errors.total}
                     error2={errorFromApi?.errors.currency_id}
                     currenciesOptions={optionsofCurrenies}
-                    // currency={currency}
                   />
                 </div>
-                {/* <div className="mx-auto my-3 max-w-[50%] border-b px-3 pb-2">
-                  <Button
-                    onClick={handelAddItem}
-                    type="button"
-                    design="addItem"
-                  >
-                    Add new item
-                  </Button>
-                </div> */}
                 <FieldArray name="totals">
                   {({ insert, remove, push }) => (
                     <div>
@@ -235,7 +219,7 @@ function EditInvoice() {
                                 id={`totals.${i}.title`}
                                 table="table"
                                 label="Item Title"
-                                placeholder="Title"
+                                placeholder="Tax"
                                 type="text"
                                 error={
                                   errorFromApi?.errors?.[`totals.${i}.title`]
@@ -261,6 +245,7 @@ function EditInvoice() {
                                 table="table"
                                 label="Price"
                                 type="text"
+                                placeholder="14 "
                                 error={
                                   errorFromApi?.errors?.[`totals.${i}.cost`]
                                 }

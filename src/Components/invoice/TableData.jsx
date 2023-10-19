@@ -30,7 +30,7 @@ function TableData({ handleClick }) {
   function Pagination() {
     const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
     return (
-      <div className="mt-6 flex  justify-center">
+      <div className="mt-6 flex justify-center   ">
         {pageNumbers.map((pageNumber) => (
           <button
             key={pageNumber}
@@ -52,7 +52,7 @@ function TableData({ handleClick }) {
     <Spinner />
   ) : (
     <>
-      <div className="mr-2 mt-8 h-[800px] divide-[#dee2e6] rounded-md border-2 border-solid border-[#e0e5e7] bg-white py-3      text-lg  font-[400]  ">
+      <div className="mr-2 mt-8 h-[800px] divide-[#dee2e6]    rounded-md border-2 border-solid border-[#e0e5e7] bg-white py-3       text-lg  font-[400]  ">
         <div className="grid  grid-cols-9 border-b-2  px-4 py-3 text-[#04749c]">
           <p>Invoice </p>
           <p>ID </p>

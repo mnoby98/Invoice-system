@@ -16,6 +16,7 @@ function useLogin({ handleError }) {
       toast.success(response.message);
       localStorage.setItem("token", response.data.token);
       dispatch(loginUser(response.data));
+      console.log("token from login", response?.data?.token);
       navigate("/dash-board");
     },
     onError: (errorFormApi) => {
