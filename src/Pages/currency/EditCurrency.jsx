@@ -12,14 +12,12 @@ import useGetCurrencyByID from "../../Components/currency/useGetCurrencyByID";
 
 function EditCurrency() {
   const { currencyID } = useParams();
-  const userToken = useSelector((state) => state?.user?.user?.token);
+  const userToken = useSelector((state) => state?.user?.token);
   const { currencyData, loadingData, error } = useGetCurrencyByID({
     currencyID,
     userToken,
   });
   const [currencyDataToApi, setCurrencyDataToApi] = useState();
-  console.log("currencyData", currencyData);
-  console.log(userToken);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [errorFromApi, setError] = useState();

@@ -19,12 +19,7 @@ function CreateInvoice() {
   const navigate = useNavigate();
   const userToken = useSelector((state) => state?.user?.user?.token);
   const { currencies, isLoading, error } = useCurrency();
-  // console.log("currencies from createInvoice", currencies.data.currencies);
-  // const currenciesOptions = currencies.data.currencies;
-  // const currenciesOptions = useSelector(
-  //   (state) => state.currency?.currencyOptions,
-  // );
-  // const { currencies, isLoading, error } = useCurrency();
+
   const optionsofCurrenies = currencies?.data?.currencies;
   const [addItem, setAddItem] = useState(true);
   const { createInvoice, isCreating } = useCreateInvoice({ handleError });
@@ -39,12 +34,6 @@ function CreateInvoice() {
     { key: "Fixed", value: "fixed" },
   ];
 
-  // const initialValues = {
-  //   title: "",
-  //   description: "",
-  //   cost: "",
-  //   currency: "",
-  // };
   const initialValuesWithItem = {
     title: "",
     description: "",
@@ -63,21 +52,13 @@ function CreateInvoice() {
   };
   console.log(initialValuesWithItem.totals);
   function handelAddItem(formik) {
-    // e.preventDefault();
-    // setAddItem((add) => !add);
     initialValuesWithItem.totals.push({
       title: "",
       cost: "",
       type: "",
     });
-    // formik?.values?.totals.push({
-    //   title: "",
-    //   cost: "",
-    //   type: "",
-    // });
-    formik.resetForm();
 
-    console.log("ssssss", formik);
+    formik.resetForm();
 
     initialValuesWithItem.totals.map((item) => console.log("items", item));
   }

@@ -9,7 +9,7 @@ function TextArea(props) {
         table ? " grid grid-cols-[1fr_2fr] " : " flex flex-col gap-2"
       }     `}
     >
-      <label htmlFor={id} className="px-2 text-[18px] text-[#04749B]">
+      <label htmlFor={id} className="px-2 text-[18px] text-[#24262d]">
         {label}
       </label>
       <div className="h-15 flex flex-col">

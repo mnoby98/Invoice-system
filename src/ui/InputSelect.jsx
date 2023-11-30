@@ -9,7 +9,7 @@ function InputSelect(props) {
         table ? " grid grid-cols-[1fr_2fr] " : " flex flex-col gap-2"
       }     `}
     >
-      <label htmlFor={id} className="px-2 text-[18px] text-[#04749B]">
+      <label htmlFor={id} className="px-2 text-[18px] text-[#24262d]">
         {label}
       </label>
       <div className="grid h-4 grid-cols-[2fr_1fr]">
@@ -27,9 +27,7 @@ function InputSelect(props) {
               </option>
             ))}
 
-            {/* <option value="">Select Currency</option>
-            <option value="USD">USD</option>
-            <option value="Euro">Euro</option> */}
+     
           </Field>
           {error == null ? (
             <ErrorMessage name={name} component={ErrorText} />

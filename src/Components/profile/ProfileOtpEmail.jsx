@@ -36,9 +36,6 @@ function ProfileOtpEmail(props) {
     setEmail({ email: values.email });
     sendingOtp({ email: values.email });
     setError("");
-    // setEmailpage(false);
-    // setOtpPage(false);
-    console.log(values);
   };
 
   function handleSetError(errorFromApi) {

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import useUser from "../Login/useUser";
 
 function useCurrency() {
-  const userToken = useSelector((state) => state?.user?.user?.token);
+  const userToken = useSelector((state) => state?.user?.token);
   const {
     isLoading,
     error,

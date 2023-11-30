@@ -30,19 +30,13 @@ function OtpNumber() {
   }
 
   const onSubmit = (values) => {
-    // const user = {
-    //   email: email,
-    //   otp: values.otpNumber,
-    // };
     setOtp({
       otp: values.otpNumber,
     });
-    console.log("user");
     applyOTP({
       email: email,
       otp: values.otpNumber,
     });
-    console.log("number otp", values);
   };
 
   useEffect(

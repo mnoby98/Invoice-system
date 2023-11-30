@@ -12,7 +12,7 @@ function RadioField(props) {
           : " flex flex-col  justify-between gap-2"
       }     `}
     >
-      <label htmlFor={id} className="px-2 text-[18px] text-[#04749B]">
+      <label htmlFor={id} className="px-2 text-[18px] text-[#24262d]">
         {mainLabel}
       </label>
       <div className="flex h-12   items-center justify-between ">

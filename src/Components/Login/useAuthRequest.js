@@ -23,7 +23,6 @@ function useAuthRequest({ handleSetError, userdata, setOtpPage, setNewPage }) {
         navigate("/login/addotp");
         dispatch(userForgetPassword({ email: userdata.email }));
       }
-      console.log("userdata", userdata);
     },
     onError: (errorFormApi) => {
       handleSetError(errorFormApi);

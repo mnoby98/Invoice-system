@@ -17,7 +17,7 @@ import useCurrency from "../../Components/currency/useCurrency";
 function CreateInvoice() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userToken = useSelector((state) => state?.user?.user?.token);
+  const userToken = useSelector((state) => state?.user?.token);
   const { currencies, isLoading, error } = useCurrency();
   // console.log("currencies from createInvoice", currencies.data.currencies);
   // const currenciesOptions = currencies.data.currencies;
@@ -89,11 +89,6 @@ function CreateInvoice() {
     cost: Yup.number().required("Required Cost"),
     currency: Yup.string().required("Required Currency"),
     totals: Yup.array().of(validationTotals),
-    // totals: Yup.array().optional(),
-
-    // itemTitle: Yup.string().required("Required Field"),
-    // type: Yup.string().required("Required Field"),
-    // price: Yup.number().required("Required Cost"),
   });
 
   const onSubmit = (values) => {
@@ -105,9 +100,6 @@ function CreateInvoice() {
       currency_id: values.currency,
       total: values.cost,
       totals: values.totals,
-      // totals: [
-      //   { title: values.itemTitle, cost: values.price, type: values.type },
-      // ],
     };
     createInvoice(invoice);
     if (!values) return toast.error("there is no values ");
@@ -117,27 +109,20 @@ function CreateInvoice() {
   return (
     <div className="h-full  bg-[#f2f8fa] ">
       <div className="mr-2  bg-[#f2f8fa] px-8 pb-8  pt-6 ">
-        <Formik
-          // validationSchema={
-          //   addItem ? validationSchemaWithItem : validationSchema
-          // }
-          // initialValues={addItem ? initialValuesWithItem : initialValues}
-          initialValues={initialValuesWithItem}
-          onSubmit={onSubmit}
-        >
+        <Formik initialValues={initialValuesWithItem} onSubmit={onSubmit}>
           {({ formik, values }) => {
             console.log("formik", formik);
             console.log("values", values);
             return (
               <Form className="     rounded-lg border-2  bg-white pb-4 pt-2   ">
                 <div className="my-3 flex  justify-between border-b px-3 pb-2">
-                  <p className="rounded-lg bg-[#04749c] px-2 py-1    text-xl font-semibold text-white">
+                  <p className="rounded-lg bg-[#9053fa] px-2 py-1    text-xl font-semibold text-white">
                     Create incident report
                   </p>
                   <div className="flex items-center justify-between gap-4">
                     <button
                       disabled={isCreating}
-                      className="rounded-lg bg-[#04749c] px-3 py-1 font-semibold text-white transition-all  duration-300 visited:bg-[#04749c] visited:text-white hover:bg-[#04749c] hover:text-white focus:bg-[#04749c]  focus:text-white"
+                      className="rounded-lg bg-[#9053fa] px-3 py-1 font-semibold text-white transition-all  duration-300 visited:bg-[#7e3af2] visited:text-white hover:bg-[#7e3af2] hover:text-white focus:bg-[#7e3af2]  focus:text-white"
                       type="submit"
                     >
                       Create
@@ -208,11 +193,11 @@ function CreateInvoice() {
                           >
                             <div className="">
                               <div className="flex  justify-between py-2">
-                                <p className="rounded-lg bg-[#04749c] px-6 py-1 text-2xl text-white">{`item ${i}`}</p>
+                                <p className="rounded-lg bg-[#9053fa] px-6 py-1 text-2xl text-white">{`item ${i}`}</p>
                                 <div className="col">
                                   <button
                                     design="addItem"
-                                    className=" rounded-lg bg-red-300 px-2 py-1 text-xl font-medium"
+                                    className=" rounded-lg bg-[#9053fa] px-2 py-1 text-xl font-medium"
                                     type="button"
                                     onClick={() => remove(i)}
                                   >

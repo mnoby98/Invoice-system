@@ -15,16 +15,11 @@ function CostInput(props) {
     currenciesOptions,
     currency,
   } = props;
-  // console.log("currency from costInput", currency);
-  // const idCurrency = currenciesOptions.find((curr) => curr.title === currency);
   function getCurencyId(array, thatTitle) {
     const currencyID = array?.find((curr) => curr?.title === thatTitle);
     return currencyID;
   }
 
-  console.log("that curr ", getCurencyId(currenciesOptions, currency));
-  // console.log("that curr ", currency?.title);
-  // console.log("that curr ", currency);
 
   return (
     <div
@@ -32,7 +27,7 @@ function CostInput(props) {
         table ? " grid grid-cols-[1fr_2fr] " : " flex flex-col gap-2"
       }     `}
     >
-      <label htmlFor={id} className="px-2 text-[18px] text-[#04749B]">
+      <label htmlFor={id} className="px-2 text-[18px] text-[#24262d]">
         {label}
       </label>
       <div className="grid h-4 grid-cols-[2fr_1fr]">

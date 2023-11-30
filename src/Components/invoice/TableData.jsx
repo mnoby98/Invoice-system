@@ -36,7 +36,7 @@ function TableData({ handleClick }) {
             key={pageNumber}
             className={`mx-1 rounded px-3 py-1 ${
               pageNumber === currentPage
-                ? "bg-blue-500 text-white"
+                ? "bg-[#7e3af2] text-white"
                 : "bg-gray-300 text-gray-700"
             }`}
             onClick={() => handlePageChange(pageNumber)}
@@ -52,8 +52,8 @@ function TableData({ handleClick }) {
     <Spinner />
   ) : (
     <>
-      <div className="mr-2 mt-8 h-[800px] divide-[#dee2e6]    rounded-md border-2 border-solid border-[#e0e5e7] bg-white py-3       text-lg  font-[400]  ">
-        <div className="grid  grid-cols-9 border-b-2  px-4 py-3 text-[#04749c]">
+      <div className="mr-2 mt-8 h-[800px] divide-[#dee2e6]    rounded-md border-2 border-solid border-[#ecedee] bg-white        text-lg  font-[400]  ">
+        <div className="grid grid-cols-9  items-center justify-center justify-items-center border-b-2  bg-[#f9fafb] px-4 py-3  text-sm font-semibold    uppercase text-[#707275]">
           <p>Invoice </p>
           <p>ID </p>
           <p>Title </p>

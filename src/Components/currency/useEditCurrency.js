@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 function useEditCurrency({ handleError, currencyDataToApi }) {
   const navigate = useNavigate();
-  // const Currency = useSelector((state) => state.currency.currency);
 
   const { mutate: editCurrency, isLoading: isEditing } = useMutation({
     mutationFn: () => EditCurrency(currencyDataToApi),

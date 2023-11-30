@@ -49,7 +49,7 @@ function AuthOtp() {
       {(formik) => {
         console.log(formik);
         return (
-          <Form className="  mx-8    rounded-md text-xl font-semibold ">
+          <Form className="  mx-8  flex flex-col justify-center   rounded-md text-xl font-semibold ">
             <h1 className="mb-3 mt-3 font-serif text-[25px]    text-black ">
               Auth OTP
             </h1>

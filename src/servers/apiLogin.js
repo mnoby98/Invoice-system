@@ -11,7 +11,6 @@ async function loginApi(emailAndPassword) {
   });
 
   const data = await res.json();
-  console.log("from GetOTp", data);
   if (!res.ok) {
     throw data;
   }
@@ -19,10 +18,6 @@ async function loginApi(emailAndPassword) {
 }
 
 export async function GetCurrentUser(tokenValue) {
-  // const tokenValue = localStorage.getItem("token");
-  // if (!tokenValue) {
-  //   return;
-  // }
   const res = await fetch(`${Url}/user`, {
     headers: {
       Accept: "application/json",

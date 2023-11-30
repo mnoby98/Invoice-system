@@ -68,7 +68,7 @@ function App() {
               <Route path="/login/addotp" element={<OtpNumber />} />
               <Route path="/login/auth" element={<AuthNewPassword />} />
             </Route>
-            <Route path="/invoice" element={<Invoice />} />
+            <Route path="/invoice/:invoiceId" element={<Invoice />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>

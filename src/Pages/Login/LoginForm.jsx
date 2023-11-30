@@ -38,8 +38,6 @@ function LoginForm() {
       .required("Required"),
   });
 
-  console.log("yup", Yup.string());
-
   const onSubmit = (values) => {
     const user = {
       email: values.email,
@@ -48,8 +46,6 @@ function LoginForm() {
     setError("");
 
     login(user);
-
-    // console.log(values);
   };
   return (
     <Formik
@@ -59,15 +55,15 @@ function LoginForm() {
     >
       {(formik) => {
         return (
-          <Form className="  mx-8 rounded-md  text-xl font-semibold ">
-            <h1 className="mb-3 mt-3 text-[25px] font-semibold  text-emerald-600">
+          <Form className="  mx-8 flex  flex-col gap-12 rounded-md text-lg font-normal ">
+            <h1 className=" mb-3 mt-3 text-xl font-semibold  text-black">
               Login
             </h1>
-            <div className="mx-2 py-4">
+            <div className="mx-2 flex flex-col gap-3 py-4">
               <InputField
                 id="email"
                 name="email"
-                placeholder="Enter email"
+                placeholder="Example@example.com"
                 type="text"
                 label="Email"
                 error={errorFromApi?.errors?.email?.[0]}
@@ -75,17 +71,11 @@ function LoginForm() {
               <InputField
                 id="password"
                 name="password"
-                placeholder="Enter Password"
-                type="text"
+                placeholder="********"
+                type="password"
                 label="Password"
                 error={errorFromApi?.errors?.password?.[0]}
               />
-              <Link
-                className="text-[18px] text-blue-600   "
-                to="/login/authotp"
-              >
-                Forgot password ?
-              </Link>
             </div>
             <div className=" text-center">
               {isLoading ? (
@@ -98,6 +88,9 @@ function LoginForm() {
                 </Button>
               )}
             </div>
+            <Link className="text-[18px] text-[#7e3af2]   " to="/login/authotp">
+              Forgot password ?
+            </Link>
           </Form>
         );
       }}

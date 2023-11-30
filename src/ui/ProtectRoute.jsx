@@ -2,32 +2,32 @@ import { Route, Router, useNavigate } from "react-router-dom";
 import useUser from "../Components/Login/useUser";
 import { BeatLoader } from "react-spinners";
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../Components/Login/loginSlice";
 
 function ProtectRoute({ children }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   //1. Load the authenticated user
   const { isLoading, data, error } = useUser();
-  console.log("data from protectROute", data);
-  const tokenFromApi = data?.data?.token;
+  dispatch(loginUser(data?.data));
 
-  console.log("data from protectROute", tokenFromApi);
-  //3. If there is no authenticated user , redirect to the /login
-  // const tooke = useSelector((state) => state?.user?.user?.token);
-  // const token = localStorage.getItem("token");
+  // console.log("data from protectROute", data);
+  // const tokenFromApi = data?.data?.token;
 
+  const token = localStorage.getItem("token");
   useEffect(
     function () {
-      if (!tokenFromApi && !isLoading) navigate("/login");
+      if (!token) navigate("/login");
     },
-    [tokenFromApi, navigate, isLoading],
+    [token, navigate],
   );
 
   //2. While loading ,show a spinner
-  if (isLoading) return <Spinner />;
+  // if (isLoading) return <Spinner />;
 
   //4. If there IS a user ,render the app
-  if (!error) return children;
+  return children;
 }
 
 function Spinner() {

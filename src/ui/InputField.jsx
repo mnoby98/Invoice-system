@@ -12,10 +12,10 @@ function InputField(props) {
           : " flex flex-col  justify-between gap-2"
       }     `}
     >
-      <label htmlFor={id} className="px-2 text-[18px] text-[#04749B]">
+      <label htmlFor={id} className="px-2 text-lg font-normal text-[#24262d]">
         {label}
       </label>
-      <div className="flex h-12  flex-col ">
+      <div className="flex   flex-col ">
         <Field name={name}>
           {(props) => {
             const { meta, field } = props;
@@ -24,11 +24,11 @@ function InputField(props) {
                 placeholder={placeholder}
                 id={id}
                 type={type}
-                className={`w-40 grow rounded-[8px] border-[1px] ${
+                className={`w-40 grow rounded-[8px] border-[1px]    focus:border-[#7e3af2] focus:ring-4 focus:ring-[#c19dff] ${
                   (meta.touched && meta.error) || error != null
                     ? " border-red-500"
                     : " border-stone-400 "
-                }  px-3  py-1  text-[18px] font-normal focus:outline-none    sm:w-auto`}
+                }  px-3  py-1  text-lg font-normal focus:outline-none    sm:w-auto`}
                 {...field}
               />
             );

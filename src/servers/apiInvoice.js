@@ -1,5 +1,6 @@
 const Url = "https://api-invoices.twice-m.com/api";
 export async function getInvoiceList(userToken) {
+  console.log("userToken form Api", userToken);
   const res = await fetch(`${Url}/invoices`, {
     headers: {
       Accept: "application/json",
@@ -18,8 +19,6 @@ export async function getInvoiceList(userToken) {
 
 export async function getInvoiceWithId(invoiceData) {
   const { invoiceId, userToken } = invoiceData;
-  console.log("invoiceData from getInvoiceWithId", invoiceData);
-  // alert(invoiceData);
 
   const res = await fetch(`${Url}/invoices/${invoiceId}`, {
     headers: {

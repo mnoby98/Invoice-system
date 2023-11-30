@@ -6,11 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 function useEditInvoice({ handleError, dataFromApiOneInvoice, newUpdateData }) {
   const navigate = useNavigate();
-  // const editInvoiceData = useSelector((state) => state?.invoice?.invoice);
-  const userToken = useSelector((state) => state.user?.user?.token);
-  console.log("editInvoiceData", dataFromApiOneInvoice);
+  const userToken = useSelector((state) => state?.user?.token);
   const editDataWithToken = { ...newUpdateData, userToken };
-  console.log("editInvoiceDataddddddd", editDataWithToken);
   const { mutate: editInvoice, isLoading: isEditing } = useMutation({
     mutationFn: () => editInvoiceFromApi(editDataWithToken),
     onSuccess: (data) => {

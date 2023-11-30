@@ -12,13 +12,11 @@ import useGetCurrencyByID from "../../Components/currency/useGetCurrencyByID";
 
 function EditCurrency() {
   const { currencyID } = useParams();
-  const userToken = useSelector((state) => state?.user?.user?.token);
+  const userToken = useSelector((state) => state?.user?.token);
   const { currencyData, loadingData, error } = useGetCurrencyByID({
     currencyID,
     userToken,
   });
-  console.log("currencyData", currencyData);
-  console.log(userToken);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [errorFromApi, setError] = useState();
@@ -27,7 +25,6 @@ function EditCurrency() {
   const currencySymbol = Currency.symbol;
   const currencyStatus = Currency.status;
   const currencyToken = Currency.userToken;
-  console.log("currencyStatus", currencyStatus);
 
   const { editCurrency, isEditing } = useEditCurrency({ handleError });
 
@@ -53,8 +50,6 @@ function EditCurrency() {
     status: Yup.string().required("Field Is required"),
   });
   const onSubmit = (values) => {
-    // if (!values) return;
-    console.log(values);
     editCurrency({
       title: values.title,
       symbol: values.symbol,

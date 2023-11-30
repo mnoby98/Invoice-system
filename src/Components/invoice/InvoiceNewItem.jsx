@@ -36,11 +36,7 @@ function InvoiceNewItem() {
           return (
             <Form className=" rounded-lg   border-2  bg-white pb-4 pt-2   ">
               <div className="mx-auto my-3 max-w-[50%] border-b px-3 pb-2">
-                <Button
-                  // className="rounded-lg bg-[#04749c] px-3 py-1 font-semibold text-white transition-all  duration-300 visited:bg-[#04749c] visited:text-white hover:bg-[#04749c] hover:text-white focus:bg-[#04749c]  focus:text-white"
-                  type="submit"
-                  design="addItem"
-                >
+                <Button type="submit" design="addItem">
                   Add new item
                 </Button>
               </div>
@@ -77,34 +73,6 @@ function InvoiceNewItem() {
         }}
       </Formik>
     </div>
-    // // <div className=" h-full  bg-blue-100">
-    // <div className="mr-2  px-8   pt-6">
-    //   <Formik>
-    //     <div className="   rounded-lg   border-2  bg-white  pt-4">
-    //       <div className="mx-auto max-w-[50%] ">
-    //         <div className=" px-8 ">
-    //           <div
-    //             className={`
-    //           relative  mb-5 grid grid-cols-[1fr_2fr] items-center`}
-    //           >
-    //             <InputField
-    //               name="test"
-    //               table="table"
-    //               type="text"
-    //               id="test"
-    //               label="Test"
-    //             />
-    //           </div>
-    //         </div>
-    //         <div className=" mb-8  w-full     ">
-    //           <Button type="submit" design="addItem">
-    //             Add new item
-    //           </Button>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </Formik>
-    // </div>
   );
 }
 

@@ -27,22 +27,13 @@ function AuthNewPassword() {
     confirmPassword: "",
   };
 
-  // const newPasswordSchema = Yup.object({
-  //   password: Yup.string()
-  //     .min(2, "Too Short!")
-  //     .max(15, "Too Long")
-  //     .required("Required"),
-  // confirmPassword: Yup.string()
-  //   .oneOf([Yup.ref("password"), ""], "Passwords must match")
-  //   .required("Required"),
-  // });
+
 
   function handleError(ErrorFromApi) {
     setError(ErrorFromApi);
   }
 
   const onSubmit = (values) => {
-    console.log(values);
 
     setConfirmPassword({ password_confirmation: values.confirmPassword });
     setPassword({

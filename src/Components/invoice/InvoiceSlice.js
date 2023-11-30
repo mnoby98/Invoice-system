@@ -14,9 +14,7 @@ const invoiceSlice = createSlice({
     },
     deleteInvoice(state, action) {
       state.invoiceDelete = action.payload;
-      // state.invoice = state.invoice.filter(
-      //   (item) => action.payload !== item.id,
-      // );
+
     },
     editInvoice(state, action) {
       const editInvoice = state.invoice.find(

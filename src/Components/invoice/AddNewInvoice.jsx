@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Spinner from "../../ui/Spinner";
 
 function AddNewInvoice({ invoice }) {
-  const userToken = useSelector((state) => state?.user?.user?.token);
+  const userToken = useSelector((state) => state?.user?.token);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,13 +19,16 @@ function AddNewInvoice({ invoice }) {
 
   function handleEdit(e) {
     e.preventDefault();
-
     navigate(`/edit-invoice/${invoice.id}`);
+  }
+
+  function goToInvoiceLink() {
+    navigate(`/invoice/${invoice.id}`);
   }
 
   return (
     <div>
-      <div className="grid grid-cols-9 items-center border-b-2   px-4  py-3  text-[#000000]">
+      <div className="grid grid-cols-9 items-center justify-items-center border-b-2   px-4  py-3  text-[#000000]">
         <p>{invoice.invoice} </p>
         <p>{invoice.id}</p>
         <p>{invoice.title} </p>
@@ -33,17 +36,22 @@ function AddNewInvoice({ invoice }) {
         <p>{invoice.cost} </p>
         <p> {invoice.status} </p>
         <p>{invoice.pending}</p>
-        <p>{invoice.transferredTo}</p>
+        <button
+          onClick={goToInvoiceLink}
+          className="w-16  rounded-lg bg-[#9053fa] font-semibold text-white hover:bg-[#7e3af2]"
+        >
+          invoice
+        </button>
         <div className="flex gap-1">
           <button
             onClick={handleDelete}
-            className="w-20  rounded-lg bg-[#04749c] font-semibold text-white hover:bg-cyan-600"
+            className="w-16  rounded-lg bg-[#9053fa] font-semibold text-white hover:bg-[#7e3af2]"
           >
             Delete
           </button>
           <button
             onClick={handleEdit}
-            className="w-20  rounded-lg bg-[#04749c] font-semibold text-white hover:bg-cyan-600"
+            className="w-16  rounded-lg bg-[#9053fa] font-semibold text-white hover:bg-[#7e3af2]"
           >
             Edit
           </button>

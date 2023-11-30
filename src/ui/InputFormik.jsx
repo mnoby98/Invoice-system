@@ -7,7 +7,7 @@ function InputFormik(props) {
   const validationSchema = validationProps;
   const onSubmit = onSubmitProps;
   return (
-    <div className=" h-full  bg-blue-100">
+    <div className=" h-full  bg-[#f9fafb]">
       <div className="ml-10 mr-10  pt-8">
         <Formik
           onSubmit={onSubmit}
@@ -15,7 +15,7 @@ function InputFormik(props) {
           initialValues={initialValues}
           enableReinitialize
         >
-          <Form className="  rounded-lg border-2 border-gray-300 bg-white">
+          <Form className="  rounded-lg border-2 border-[#ecedee] bg-[white]">
             <div className="mx-8 flex items-center justify-between ">
               <p className="mb-8 mt-6  text-lg">Currencies</p>
               <Button design="active" type="submit">

@@ -15,16 +15,11 @@ function CurrenciesTable() {
 
   const currenciesToTable = currencies?.data?.currencies;
   const currenciesPagination = currencies?.data?.pagination;
-  console.log("currenciesPagination", currenciesPagination?.current_page);
 
   const [currentPage, setCurrentPage] = useState(1);
-  // const itemsPerPage = 5;
   const itemsPerPage = currenciesPagination?.per_page;
-  // const totalPages = Math.ceil(currenciesToTable?.length / itemsPerPage);
   const totalPages = currenciesPagination?.total;
-  // const startIndex = (currentPage - 1) * itemsPerPage;
   const startIndex = (currentPage - 1) * itemsPerPage;
-  // const endIndex = currentPage * itemsPerPage;
   const endIndex = currentPage * itemsPerPage;
   const currenciesToDisplay = currenciesToTable?.slice(startIndex, endIndex);
 
@@ -57,11 +52,11 @@ function CurrenciesTable() {
     <Spinner />
   ) : (
     <>
-      <div className="relative z-0 grid  h-full grid-cols-[1fr]     sm:grid-rows-[auto_1fr] ">
-        <div className="  mb-5 mr-2 bg-[#f2f8fa]  px-12  pb-10  pt-8  ">
+      <div className="   grid grid-cols-[1fr]  bg-[#f9fafb]  pb-8  sm:grid-rows-[auto_1fr] ">
+        <div className="   mr-2 px-12      pt-8  ">
           <CurrencyNav setEdit={setEdit} />
-          <div className="mt-8  h-[800px] divide-y-2 divide-[#dee2e6] rounded-md border-2 border-solid border-[#e0e5e7] bg-white       text-lg  font-[400]  ">
-            <div className="grid grid-cols-[1fr_1fr_1fr] justify-items-center   px-4 py-3  text-[#04749c]">
+          <div className="mt-8  h-[800px] divide-y-2 divide-[#dee2e6] rounded-md border-2 border-solid border-[#e0e5e7] bg-[#f9fafb]      text-lg  font-[400]  ">
+            <div className=" grid grid-cols-[1fr_1fr_1fr] items-center justify-items-center  px-4 py-2  text-[#707275]">
               <p>Title </p>
               <p>Symbol </p>
             </div>

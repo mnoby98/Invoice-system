@@ -11,7 +11,7 @@ import { useState } from "react";
 function CreateCurrency() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userToken = useSelector((state) => state?.user?.user?.token);
+  const userToken = useSelector((state) => state?.user?.token);
   const { createCurrency, isLoading } = useCreateCurrency({ handleError });
   const [errorFromAPi, setError] = useState();
 
@@ -42,7 +42,6 @@ function CreateCurrency() {
       symbol: values.symbol,
       status: values.status,
     });
-    // toast.success("Success create currency");
     dispatch(
       addCurrency({
         title: values.title,
@@ -51,15 +50,10 @@ function CreateCurrency() {
         userToken: userToken,
       }),
     );
-    // navigate("/currency");
   };
 
   return (
-    <InputFormik
-      initialProps={intialValues}
-      // validationProps={validationSchema}
-      onSubmitProps={onSubmit}
-    >
+    <InputFormik initialProps={intialValues} onSubmitProps={onSubmit}>
       <InputField
         name="title"
         id="title"

@@ -2,15 +2,15 @@ import { Link } from "react-router-dom";
 
 function Button({ design, children, onClick, to, type, disabled }) {
   const base =
-    "mt-2  w-48 sm:w-64 rounded-full  bg-[#04749B] focus:outline-none  focus:ring  focus:ring-offset-1 focus:ring-[#04749B]  p-2 text-center   text-white ";
+    "mt-2  w-48 sm:w-64 rounded-md  bg-[#7e3af2] focus:outline-none  focus:ring  focus:ring-offset-1 focus:ring-[#7e3af2]  p-2 text-center   text-white ";
   const styled = {
     primary: base,
     active:
-      "rounded-lg bg-[#04749c] px-3 py-1 font-semibold text-white transition-all  duration-300 visited:bg-[#04749c] visited:text-white hover:bg-[#04749c] hover:text-white focus:bg-[#04749c]  focus:text-white",
+      "rounded-lg bg-[#9053fa] px-3 py-1 font-semibold text-white transition-all  duration-300 visited:bg-[#7e3af2] visited:text-white hover:bg-[#7e3af2] hover:text-white focus:bg-[#7e3af2]  focus:text-white",
     addItem:
-      "rounded-lg w-full bg-[#04749c] px-3 py-1 font-semibold text-white transition-all  duration-300 visited:bg-[#04749c] visited:text-white hover:bg-[#04749c] hover:text-white focus:bg-[#04749c]  focus:text-white",
+      "rounded-lg w-full bg-[#9053fa] px-3 py-1 font-semibold text-white transition-all  duration-300 visited:bg-[#7e3af2] visited:text-white hover:bg-[#7e3af2 hover:text-white focus:bg-[#7e3af2]  focus:text-white",
     visit:
-      "rounded-lg px-3 py-1 font-semibold transition-all duration-300 visited:bg-[#04749c] visited:text-white hover:bg-[#04749c] hover:text-white focus:bg-[#04749c]  focus:text-white",
+      "rounded-lg px-3 py-1 font-semibold transition-all duration-300 visited:bg-[#9053fa] visited:text-white hover:bg-[#7e3af2] hover:text-white focus:bg-[#7e3af2]  focus:text-white",
   };
 
   if (to)

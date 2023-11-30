@@ -125,13 +125,13 @@ function EditInvoice() {
             return (
               <Form className=" rounded-lg   border-2  bg-white py-4   ">
                 <div className="my-3 flex justify-between border-b px-3 pb-2">
-                  <p className=" rounded-full bg-[#04749c] px-2 py-1 font-semibold text-white">
+                  <p className=" rounded-full bg-[#9053fa] px-2 py-1 font-semibold text-white">
                     Edit incident report
                   </p>
                   <div className="flex items-center justify-between gap-4">
                     <button
                       disabled={isEditing}
-                      className="rounded-lg bg-[#04749c] px-3 py-1 font-semibold text-white transition-all  duration-300 visited:bg-[#04749c] visited:text-white hover:bg-[#04749c] hover:text-white focus:bg-[#04749c]  focus:text-white"
+                      className="rounded-lg bg-[#9053fa] px-3 py-1 font-semibold text-white transition-all  duration-300 visited:bg-[#04749c] visited:text-white hover:bg-[#04749c] hover:text-white focus:bg-[#04749c]  focus:text-white"
                       type="submit"
                     >
                       Edit
@@ -202,11 +202,13 @@ function EditInvoice() {
                           >
                             <div className="">
                               <div className="flex  justify-between py-2">
-                                <p className="rounded-lg bg-[#04749c] px-6 py-1 text-2xl text-white">{`item ${i}`}</p>
+                                <p className="rounded-lg bg-[#7e3af2] px-6 py-1 text-2xl text-white">{`Item ${
+                                  i + 1
+                                }`}</p>
                                 <div className="col">
                                   <button
                                     design="addItem"
-                                    className=" rounded-lg bg-red-300 px-2 py-1 text-xl font-medium"
+                                    className=" rounded-lg bg-[#7e3af2] px-2 py-1 text-xl font-medium text-white"
                                     type="button"
                                     onClick={() => remove(i)}
                                   >

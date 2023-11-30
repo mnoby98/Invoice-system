@@ -14,7 +14,6 @@ function usePutOTP({ handleSetError, email, otp, type, setNewPage }) {
       toast.success(data.message);
       if (type === "ProfileToNewOpject") {
         dispatch(userForgetPassword({ email: email, otp: otp }));
-        // setNewPage(false);
       }
       if (type !== "ProfileToNewOpject") {
         dispatch(userForgetPassword({ email: email, otp: otp }));
